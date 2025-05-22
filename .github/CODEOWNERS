@@ -1,0 +1,29 @@
+# Global owners
+* @Lumina-Enterprise-Solutions/platform-team
+
+# Infrastructure code
+/infra/ @Lumina-Enterprise-Solutions/platform-team @Lumina-Enterprise-Solutions/devops-team
+/terraform/ @Lumina-Enterprise-Solutions/platform-team @Lumina-Enterprise-Solutions/devops-team
+/k8s/ @Lumina-Enterprise-Solutions/platform-team @Lumina-Enterprise-Solutions/devops-team
+/helm/ @Lumina-Enterprise-Solutions/platform-team @Lumina-Enterprise-Solutions/devops-team
+
+# Backend code
+/cmd/ @Lumina-Enterprise-Solutions/backend-team
+/internal/ @Lumina-Enterprise-Solutions/backend-team
+/pkg/ @Lumina-Enterprise-Solutions/backend-team
+
+# Frontend code
+/src/ @Lumina-Enterprise-Solutions/frontend-team
+/components/ @Lumina-Enterprise-Solutions/frontend-team
+/pages/ @Lumina-Enterprise-Solutions/frontend-team
+
+# Documentation
+/docs/ @Lumina-Enterprise-Solutions/architecture-team
+README.md @Lumina-Enterprise-Solutions/architecture-team
+
+# CI/CD workflows
+/.github/workflows/ @Lumina-Enterprise-Solutions/platform-team @Lumina-Enterprise-Solutions/devops-team
+
+# Security sensitive files
+/security/ @Lumina-Enterprise-Solutions/security-team
+Dockerfile @Lumina-Enterprise-Solutions/platform-team @Lumina-Enterprise-Solutions/devops-team
