@@ -1,3 +1,67 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline(
+  --color-background: var(--background);
+--color-foreground: var(--foreground);
+--color-primary: var(--primary);
+--color-primary-foreground: var(--primary-foreground);
+--color-secondary: var(--secondary);
+--color-secondary-foreground: var(--secondary-foreground);
+--color-muted: var(--muted);
+--color-muted-foreground: var(--muted-foreground);
+--color-accent: var(--accent);
+--color-accent-foreground: var(--accent-foreground);
+--color-growth-green: var(--growth-green);
+--color-growth-green-foreground: var(--growth-green-foreground);
+--color-gold: var(--gold);
+--color-gold-foreground: var(--gold-foreground);
+)
+
+:root {
+  --background: #1a1a1a;
+  --foreground: #ffffff;
+  --primary: #0a3d62;
+  --primary-foreground: #f8f9fd;
+  --secondary: #6a4c93;
+  --secondary-foreground: #f8f9fd;
+  --muted: #888;
+  --muted-foreground: #f8f9fd;
+  --accent: #f26d3e;
+  --accent-foreground: #f8f9fd;
+  --growth-green: #4caf50;
+  --growth-green-foreground: #f8f9fd;
+  --gold: #ffb100;
+  --gold-foreground: #f8f9fd;
+}
+
+.dark {
+  --background: #242424;
+  --foreground: #ffffff;
+  --primary: #646cff;
+  --primary-foreground: #f8f9fd;
+  --secondary: #6a4c93;
+  --secondary-foreground: #f8f9fd;
+  --muted: #888;
+  --muted-foreground: #f8f9fd;
+  --accent: #f26d3e;
+  --accent-foreground: #f8f9fd;
+  --growth-green: #4caf50;
+  --growth-green-foreground: #f8f9fd;
+  --gold: #ffb100;
+  --gold-foreground: #f8f9fd;
+}
+
+/* @layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+} */
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
