@@ -1,7 +1,7 @@
 'use client';
 
-import * as React from 'react';
 import { Progress } from '../ui/Progress';
+import { useEffect, useState } from 'react';
 
 interface ProgressCustomProps {
   initialValue?: number;
@@ -16,9 +16,9 @@ export function ProgressCustom({
   delay = 500,
   className,
 }: ProgressCustomProps) {
-  const [progress, setProgress] = React.useState(initialValue);
+  const [progress, setProgress] = useState(initialValue);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timer = setTimeout(() => {
       setProgress(targetValue);
     }, delay);
