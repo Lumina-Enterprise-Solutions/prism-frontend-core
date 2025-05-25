@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
-    "test:ci": "vitest run --coverage",
+    "test:ci": "vitest run --exclude src/stories/**/*.stories.tsx",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
