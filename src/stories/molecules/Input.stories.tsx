@@ -25,9 +25,7 @@ export const Default: Story = {
     id: 'email',
     name: 'email',
     type: 'email',
-    label: 'Email',
     placeholder: 'name@example.com',
-    message: 'Please enter a valid email address',
     required: true,
   },
 };

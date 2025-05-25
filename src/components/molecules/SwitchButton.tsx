@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Label } from '../atoms/Label';
 import { Switch } from '../ui/switch';
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { Progress } from '../ui/Progress';
+import { Progress } from '../ui/progress';
 import { useEffect, useState } from 'react';
 
 interface ProgressCustomProps {

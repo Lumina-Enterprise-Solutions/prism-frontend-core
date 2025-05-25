@@ -3,6 +3,7 @@ import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { LoginPage } from '../pages/Auth/Login';
+import '@testing-library/jest-dom';
 
 // Helper render with router context
 const renderWithRouter = (ui: React.ReactElement) => {

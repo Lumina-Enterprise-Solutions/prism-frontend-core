@@ -12,8 +12,10 @@
     "resolveJsonModule": false,
     "allowArbitraryExtensions": true,
     "noEmit": false,
-    "jsx": "react-jsx",
-    "types": ["vitest"]
+    "types": ["vitest"],
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "strict": true
   },
   "files": [],
   "references": [
