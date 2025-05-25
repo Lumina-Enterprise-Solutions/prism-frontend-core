@@ -12,14 +12,6 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/setupTests.ts',
-    exclude: [
-      'node_modules',
-      'dist',
-      'cypress',
-      '**/*.stories.tsx',
-      '**/*.stories.mts',
-      '**/*.stories.cts',
-    ],
   },
   resolve: {
     alias: {
