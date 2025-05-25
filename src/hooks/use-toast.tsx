@@ -7,7 +7,7 @@ import {
   ToastViewport,
   ToastProvider,
   type ToastProps,
-} from '../atoms/Toast';
+} from '../components/atoms/Toast';
 
 type ToastData = {
   id: string;

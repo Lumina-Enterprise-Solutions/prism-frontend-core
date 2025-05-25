@@ -1,7 +1,7 @@
 'use client';
 
+import { useToast } from '../../hooks/use-toast';
 import { Button } from '../atoms/Button';
-import { useToast } from '../hook/use-toast';
 
 export function ToastCustom() {
   const { addToast } = useToast();
