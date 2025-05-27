@@ -1,0 +1,16 @@
+{
+  "register": {
+    "title": "Create an account",
+    "subtitle": "Enter your information to get started"
+  },
+  "form": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "emailPlaceholder": "m@example.com",
+    "password": "Password",
+    "passwordPlaceholder": "********",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "********"
+  }
+}

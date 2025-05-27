@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #f8f7fa;
@@ -38,8 +38,8 @@
   --sidebar-border: #d7d2e0;
   --sidebar-ring: #8a79ab;
   --font-sans: Montserrat, sans-serif;
-  --font-serif: "Lora", Georgia, serif;
-  --font-mono: "Fira Code", "Courier New", monospace;
+  --font-serif: 'Lora', Georgia, serif;
+  --font-mono: 'Fira Code', 'Courier New', monospace;
   --radius: 0.5rem;
   --shadow-2xs: 1px 2px 5px 1px hsl(0 0% 0% / 0.03);
   --shadow-xs: 1px 2px 5px 1px hsl(0 0% 0% / 0.03);
@@ -90,8 +90,8 @@
   --sidebar-border: #2a273a;
   --sidebar-ring: #a995c9;
   --font-sans: Montserrat, sans-serif;
-  --font-serif: "Lora", Georgia, serif;
-  --font-mono: "Fira Code", "Courier New", monospace;
+  --font-serif: 'Lora', Georgia, serif;
+  --font-mono: 'Fira Code', 'Courier New', monospace;
   --radius: 0.5rem;
   --shadow-2xs: 1px 2px 5px 1px hsl(0 0% 0% / 0.03);
   --shadow-xs: 1px 2px 5px 1px hsl(0 0% 0% / 0.03);

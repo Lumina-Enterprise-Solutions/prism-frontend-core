@@ -1,0 +1,17 @@
+{
+    "register": {
+      "title": "Buat akun",
+      "subtitle": "Masukkan informasi Anda untuk memulai"
+    },
+    "form": {
+      "firstName": "Nama Depan",
+      "lastName": "Nama Belakang",
+      "email": "Email",
+      "emailPlaceholder": "nama@contoh.com",
+      "password": "Kata Sandi",
+      "passwordPlaceholder": "********",
+      "confirmPassword": "Konfirmasi Kata Sandi",
+      "confirmPasswordPlaceholder": "********"
+    }
+  }
+  
