@@ -8,6 +8,7 @@ export const loginSchema = z
     password: z.string().min(8, {
       message: 'Password must be at least 8 characters.',
     }),
+    tenant_id: z.string().default('default').optional(),
   })
   .refine((data) => data.email, {
     path: ['email'],
@@ -32,9 +33,4 @@ export const registerSchema = z
       .regex(/[^a-zA-Z0-9]/, {
         message: 'Password must contain at least one special character',
       }),
-    confirmPassword: z.string(),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    path: ['confirmPassword'],
-    message: "Passwords don't match",
   });

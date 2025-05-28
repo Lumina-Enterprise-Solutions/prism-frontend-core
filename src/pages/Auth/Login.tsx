@@ -11,6 +11,11 @@ import { useEffect, useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import SkeletonAuth from '../../components/organims/loading/SkeletonAuth';
 import { Card } from '../../components/atoms/Card';
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '../../store/slices/auth';
+import { toast } from 'react-toastify';
+import { login } from '../../api/auth/auth';
+import Cookies from 'js-cookie';
 
 type LoginAuthInput = z.infer<typeof loginSchema>;
 
@@ -26,6 +31,7 @@ export function LoginPage({
     resolver: zodResolver(loginSchema),
   });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -45,11 +51,30 @@ export function LoginPage({
     );
   }
 
-  const onSubmit = (data: LoginAuthInput) => {
-    if (!data.email || !data.password) {
-      return;
-    } else {
-      navigate('/register');
+  const onSubmit = async (data: LoginAuthInput) => {
+    try {
+      const payload = {
+        ...data,
+        tenant_id: 'default',
+      };
+
+      const response = await login(payload);
+      const accessToken = response.data.data.access_token;
+      const refreshToken = response.data.data.refresh_token;
+
+      if (!accessToken) throw new Error('Token is missing');
+
+      Cookies.set('token', accessToken, {
+        secure: true,
+      });
+
+      Cookies.set('refresh_token', refreshToken, { secure: true });
+
+      dispatch(loginSuccess(accessToken));
+      toast.success('Login berhasil');
+      navigate('/dashboard');
+    } catch {
+      toast.error('Email atau password salah');
     }
   };
 

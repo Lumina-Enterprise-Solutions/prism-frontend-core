@@ -6,15 +6,25 @@ import App from './App.tsx';
 import { ToastContextProvider } from './hooks/use-toast.tsx';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from './components/theme-provider.tsx';
+import { Provider } from 'react-redux';
+import 'react-toastify/dist/ReactToastify.css';
+import { store } from './store/index.ts';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
-      <ThemeProvider>
-        <ToastContextProvider>
-          <App />
-        </ToastContextProvider>
-      </ThemeProvider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <ThemeProvider>
+            <ToastContextProvider>
+              <App />
+            </ToastContextProvider>
+          </ThemeProvider>
+        </BrowserRouter>
+      </QueryClientProvider>
+    </Provider>
   </StrictMode>
 );

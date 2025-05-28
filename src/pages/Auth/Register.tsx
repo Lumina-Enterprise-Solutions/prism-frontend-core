@@ -30,7 +30,6 @@ export function RegisterPage({
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
-  const [confirmShowPassword, setConfirmShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -53,7 +52,7 @@ export function RegisterPage({
     setIsLoading(true);
     try {
       await new Promise((res) => setTimeout(res, 1000));
-      if (!data.email || !data.password || !data.confirmPassword) {
+      if (!data.email || !data.password) {
         return;
       } else {
         navigate('/login');
@@ -175,56 +174,6 @@ export function RegisterPage({
                       </p>
                     )}
                   </div>
-                </div>
-              </>
-            )}
-
-            {isLoading ? (
-              <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Skeleton className="w-24 h-4" />
-                </div>
-                <div className="relative">
-                  <Skeleton className="w-full h-10" />
-                </div>
-              </div>
-            ) : (
-              <>
-                <div className="grid gap-2">
-                  <div className="flex items-center">
-                    <Label htmlFor="confirmPassword">
-                      {t('form.confirmPassword', 'Confirm Password')}
-                    </Label>
-                  </div>
-                </div>
-                <div className="relative">
-                  <Input
-                    {...register('confirmPassword')}
-                    id="confirmPassword"
-                    type={confirmShowPassword ? 'text' : 'password'}
-                    placeholder={t(
-                      'form.confirmPasswordPlaceholder',
-                      '********'
-                    )}
-                    className="pr-10"
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setConfirmShowPassword(!confirmShowPassword)}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 text-primary/50"
-                  >
-                    {confirmShowPassword ? (
-                      <EyeOff size={20} />
-                    ) : (
-                      <Eye size={20} />
-                    )}
-                  </button>
-                  {errors.confirmPassword && (
-                    <p className="text-red-500 font-sm text-sm">
-                      {errors.confirmPassword.message}
-                    </p>
-                  )}
                 </div>
               </>
             )}

@@ -1,6 +1,6 @@
 import './App.css';
 import { AnimatePresence } from 'framer-motion';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { LoginPage } from './pages/Auth/Login';
 import { useEffect, useState } from 'react';
 import { LoadingUI } from './components/organims/loading/LoadingUi';
@@ -10,9 +10,15 @@ import DefaultLayout from './components/templates/DefaultLayout';
 import Dashboard from './pages/Dashboard';
 import i18n from './i18n';
 import { I18nextProvider } from 'react-i18next';
+import type { RootState } from './store';
+import { useSelector } from 'react-redux';
+
 function App() {
   const location = useLocation();
   const [isAppLoading, setIsAppLoading] = useState(true);
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
+  );
 
   // Simulate initial app loading
   useEffect(() => {
@@ -47,7 +53,12 @@ function App() {
 
           {/* Protected Routes */}
           <Route element={<DefaultLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route
+              path="/dashboard"
+              element={
+                isAuthenticated ? <Dashboard /> : <Navigate to="/login" />
+              }
+            />
           </Route>
         </Routes>
       </I18nextProvider>
