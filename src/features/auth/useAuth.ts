@@ -6,7 +6,7 @@ import { loginSuccess } from "../../store/slices/auth";
 // Register
 export const useRegister = () =>
   useMutation({
-    mutationFn: (data: { email: string; password: string; name: string }) =>
+    mutationFn: (data: { email: string; password: string; first_name: string, last_name: string }) =>
       axiosClient.post("/auth/register", data).then((res) => res.data),
   });
 
@@ -20,15 +20,19 @@ export const useLogin = () => {
       axiosClient.post("/auth/login", data).then((res) => res.data),
     onSuccess: (data) => {
       localStorage.setItem("token", data.token);
-      dispatch(loginSuccess(data.token)); // Perbaikan di sini
+      dispatch(loginSuccess(data.token));
       queryClient.invalidateQueries({ queryKey: ["me"] });
     },
   });
 };
 
+export const useForgotPassword = () => useMutation({
+  mutationFn: (data: { email: string }) => axiosClient.post("auth/forgot-password", data).then((res) => res.data),
+})
+
 // Reset Password
 export const useResetPassword = () =>
   useMutation({
-    mutationFn: (email: string) =>
-      axiosClient.post("/auth/reset-password", { email }).then((res) => res.data),
+    mutationFn: (data: { password: string, token?: string }) =>
+      axiosClient.post("/auth/reset-password", data).then((res) => res.data),
   });

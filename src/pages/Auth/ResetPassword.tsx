@@ -1,23 +1,23 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { cn } from '../../utils/utils';
 import { Button } from '../../components/atoms/Button';
 import { Input } from '../../components/atoms/Input';
 import { Label } from '../../components/atoms/Label';
-import { loginSchema } from '../../helper/schema/authSchema';
-import { z } from 'zod';
+import { resetPasswordSchema } from '../../helper/schema/authSchema';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
-import { Eye, EyeOff } from 'lucide-react';
-import SkeletonAuth from '../../components/organims/loading/SkeletonAuth';
 import { Card } from '../../components/atoms/Card';
 import { toast } from 'react-toastify';
-import { useLogin } from '../../features/auth/useAuth';
 import { useTranslation } from 'react-i18next';
+import { useResetPassword } from '../../features/auth/useAuth';
+import { z } from 'zod';
+import { Eye, EyeOff } from 'lucide-react';
+import SkeletonReset from '../../components/organims/loading/SkeletonReset';
 
-type LoginAuthInput = z.infer<typeof loginSchema>;
+type ResetPasswordInput = z.infer<typeof resetPasswordSchema>
 
-export function LoginPage({
+export function ResetPasswordPage({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<'form'>) {
@@ -25,14 +25,14 @@ export function LoginPage({
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginAuthInput>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<ResetPasswordInput>({
+    resolver: zodResolver(resetPasswordSchema),
   });
   const navigate = useNavigate();
-  const { mutate: login, isPending } = useLogin();
+  const { mutate: resetPassword, isPending } = useResetPassword();
   const { t } = useTranslation();
-  const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -45,23 +45,22 @@ export function LoginPage({
   if (isLoading || isPending) {
     return (
       <div className="animate-pulse">
-        <SkeletonAuth />
+        <SkeletonReset />
       </div>
     );
   }
 
-  const onSubmit = (data: LoginAuthInput) => {
-    login(data, {
+  const onSubmit = (data: ResetPasswordInput) => {
+    resetPassword(data, {
       onSuccess: () => {
-        toast.success('Login berhasil');
-        navigate('/dashboard');
+        navigate('/login');
       },
       onError: () => {
-        toast.error('Email atau password salah');
-      },
-    });
-  };
-  
+        toast.error("Please Check your new password")
+      }
+    },
+    );
+  }
 
   return (
     <form
@@ -71,43 +70,39 @@ export function LoginPage({
     >
       <div className="flex flex-col items-center gap-2 text-center text-foreground">
         <h1 className="text-2xl font-bold dark:text-primary-foreground">
-          {t('login.title', 'Login to your account')}
+          {t('reset_password.title', 'Reset Password')}
         </h1>
         <p className="text-balance text-sm text-muted-foreground">
-          {t('login.subtitle','Enter your email below to login to your account')}
+          {t('reset_password.subtitle', 'This password should be different from the previous password.')}
         </p>
       </div>
       <Card className="p-4 md:p-6 w-full max-w-full">
         <div className="grid gap-6">
           <div className="grid gap-2">
-            <Label htmlFor="email">{t('form.email','Email')}</Label>
+            <Label htmlFor="text">{t('form.resetToken', 'Token')}</Label>
             <Input
-              {...register('email')}
-              id="email"
-              type="email"
+              {...register('token')}
+              id="token"
+              type="text"
               placeholder="m@example.com"
               required
             />
-            {errors.email && <p>{errors.email.message}</p>}
+            {errors.token && <p>{errors.token.message}</p>}
           </div>
           <div className="grid gap-2">
             <div className="flex items-center">
-              <Label htmlFor="password">{t('form.password', 'Password')}</Label>
-              <Link
-                to="/forgot-password"
-                className="ml-auto text-sm underline-offset-4 hover:underline"
-              >
-                {t('form.forgot_password', 'Forgot your password?')}
-              </Link>
+              <Label htmlFor="password">
+                {t('form.password', 'Password')}
+              </Label>
             </div>
             <div className="relative">
               <Input
                 {...register('password')}
                 id="password"
                 type={showPassword ? 'text' : 'password'}
-                required
+                placeholder={t('form.passwordPlaceholder', '********')}
                 className="pr-10"
-                placeholder="********"
+                required
               />
               <button
                 type="button"
@@ -124,36 +119,10 @@ export function LoginPage({
             </div>
           </div>
           <Button type="submit" className="w-full">
-            Login
+            Reset
           </Button>
-          <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
-            <span className="relative z-10 bg-background px-2 text-muted-foreground">
-              Or continue with
-            </span>
-          </div>
-        </div>
-        <div className="pt-2">
-          <div className="flex flex-row items-center justify-between space-x-6">
-            <Button type="submit" className="w-full" variant="outline">
-              Facebook
-            </Button>
-            <Button type="submit" className="w-full" variant="outline">
-              Google
-            </Button>
-          </div>
-        </div>
-        <div className="text-center text-sm pt-4">
-          Don&apos;t have an account?{' '}
-          <Link to={'/register'} className="underline underline-offset-4">
-            Sign up
-          </Link>
         </div>
       </Card>
-      <div className="pt-2">
-        <p className="text-xs text-foreground">
-          For demo purposes, you can use any email and password
-        </p>
-      </div>
     </form>
   );
 }

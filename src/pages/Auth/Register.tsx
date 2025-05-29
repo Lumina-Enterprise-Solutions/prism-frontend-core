@@ -14,7 +14,7 @@ import SkeletonAuth from '../../components/organims/loading/SkeletonAuth';
 import { Card } from '../../components/atoms/Card';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import { authRegister } from '../../api/auth/auth';
+import { useRegister } from '../../features/auth/useAuth';
 
 type RegisterAuthInput = z.infer<typeof registerSchema>;
 
@@ -30,6 +30,7 @@ export function RegisterPage({
     resolver: zodResolver(registerSchema),
   });
   const navigate = useNavigate();
+  const {mutate: registerUser, isPending } = useRegister();
   const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -42,7 +43,7 @@ export function RegisterPage({
     return () => clearTimeout(timer);
   }, []);
 
-  if (isLoading) {
+  if (isLoading || isPending) {
     return (
       <div className="animate-pulse">
         <SkeletonAuth />
@@ -51,23 +52,15 @@ export function RegisterPage({
   }
 
   const onSubmit = async (data: RegisterAuthInput) => {
-    setIsLoading(true);
-    try {
-      const payload = {
-        ...data,
-        tenant_id: 'default',
+    registerUser(data, {
+      onSuccess: () => {
+        toast.success('Registrasi berhasil');
+        navigate('/login');
+      },
+      onError: () => {
+        toast.error('Please try again')
       }
-
-      const response = await authRegister(payload)
-      console.log(response)
-      
-      if(!response) throw new Error('Registration failed');
-
-      toast.success('Registration successful');
-      navigate('/login')
-    } catch (error) {
-      console.error('Registration error:', error);
-    }
+    })
   };
 
   return (

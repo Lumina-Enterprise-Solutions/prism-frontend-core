@@ -13,6 +13,8 @@ import { I18nextProvider } from 'react-i18next';
 import type { RootState } from './store';
 import { useSelector } from 'react-redux';
 import Dynamic404 from './pages/404/Dynamic404';
+import { ForgotPasswordPage } from './pages/Auth/ForgotPassword';
+import { ResetPasswordPage } from './pages/Auth/ResetPassword';
 
 function App() {
   const location = useLocation();
@@ -50,6 +52,8 @@ function App() {
           <Route element={<AuthLayout />}>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
           </Route>
 
           {/* Protected Routes */}
