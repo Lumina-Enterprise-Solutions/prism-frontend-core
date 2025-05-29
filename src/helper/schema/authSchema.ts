@@ -33,4 +33,11 @@ export const registerSchema = z
       .regex(/[^a-zA-Z0-9]/, {
         message: 'Password must contain at least one special character',
       }),
+    first_name: z.string().min(1, {
+      message: 'First name is required.',
+    }),
+    last_name: z.string().min(1, {
+      message: 'Last name is required.',
+    }),
+    tenant_id: z.string().default('default').optional(),
   });

@@ -1,0 +1,34 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useDispatch } from "react-redux";
+import { axiosClient } from "../../api/apiClient";
+import { loginSuccess } from "../../store/slices/auth";
+
+// Register
+export const useRegister = () =>
+  useMutation({
+    mutationFn: (data: { email: string; password: string; name: string }) =>
+      axiosClient.post("/auth/register", data).then((res) => res.data),
+  });
+
+// Login
+export const useLogin = () => {
+  const dispatch = useDispatch();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (data: { email: string; password: string }) =>
+      axiosClient.post("/auth/login", data).then((res) => res.data),
+    onSuccess: (data) => {
+      localStorage.setItem("token", data.token);
+      dispatch(loginSuccess(data.token)); // Perbaikan di sini
+      queryClient.invalidateQueries({ queryKey: ["me"] });
+    },
+  });
+};
+
+// Reset Password
+export const useResetPassword = () =>
+  useMutation({
+    mutationFn: (email: string) =>
+      axiosClient.post("/auth/reset-password", { email }).then((res) => res.data),
+  });

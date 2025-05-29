@@ -13,6 +13,8 @@ import { Skeleton } from '../../components/atoms/Skeleton';
 import SkeletonAuth from '../../components/organims/loading/SkeletonAuth';
 import { Card } from '../../components/atoms/Card';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+import { authRegister } from '../../api/auth/auth';
 
 type RegisterAuthInput = z.infer<typeof registerSchema>;
 
@@ -51,12 +53,18 @@ export function RegisterPage({
   const onSubmit = async (data: RegisterAuthInput) => {
     setIsLoading(true);
     try {
-      await new Promise((res) => setTimeout(res, 1000));
-      if (!data.email || !data.password) {
-        return;
-      } else {
-        navigate('/login');
+      const payload = {
+        ...data,
+        tenant_id: 'default',
       }
+
+      const response = await authRegister(payload)
+      console.log(response)
+      
+      if(!response) throw new Error('Registration failed');
+
+      toast.success('Registration successful');
+      navigate('/login')
     } catch (error) {
       console.error('Registration error:', error);
     }
@@ -119,6 +127,7 @@ export function RegisterPage({
                       {t('form.firstName', 'First Name')}
                     </Label>
                     <Input
+                    {...register('first_name')}
                       id="firstName"
                       type="text"
                       placeholder={t('form.firstName', 'First Name')}
@@ -129,6 +138,7 @@ export function RegisterPage({
                       {t('form.lastName', 'Last Name')}
                     </Label>
                     <Input
+                    {...register('last_name')}
                       id="lastName"
                       type="text"
                       placeholder={t('form.lastName', 'Last Name')}

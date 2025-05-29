@@ -12,6 +12,7 @@ import i18n from './i18n';
 import { I18nextProvider } from 'react-i18next';
 import type { RootState } from './store';
 import { useSelector } from 'react-redux';
+import Dynamic404 from './pages/404/Dynamic404';
 
 function App() {
   const location = useLocation();
@@ -60,6 +61,7 @@ function App() {
               }
             />
           </Route>
+          <Route path="*" element={<Dynamic404 />} />
         </Routes>
       </I18nextProvider>
     </AnimatePresence>

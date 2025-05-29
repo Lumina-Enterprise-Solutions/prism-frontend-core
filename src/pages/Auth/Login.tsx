@@ -11,11 +11,8 @@ import { useEffect, useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import SkeletonAuth from '../../components/organims/loading/SkeletonAuth';
 import { Card } from '../../components/atoms/Card';
-import { useDispatch } from 'react-redux';
-import { loginSuccess } from '../../store/slices/auth';
 import { toast } from 'react-toastify';
-import { login } from '../../api/auth/auth';
-import Cookies from 'js-cookie';
+import { useLogin } from '../../features/auth/useAuth';
 
 type LoginAuthInput = z.infer<typeof loginSchema>;
 
@@ -31,7 +28,7 @@ export function LoginPage({
     resolver: zodResolver(loginSchema),
   });
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const { mutate: login, isPending } = useLogin();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -43,7 +40,7 @@ export function LoginPage({
     return () => clearTimeout(timer);
   }, []);
 
-  if (isLoading) {
+  if (isLoading || isPending) {
     return (
       <div className="animate-pulse">
         <SkeletonAuth />
@@ -51,32 +48,18 @@ export function LoginPage({
     );
   }
 
-  const onSubmit = async (data: LoginAuthInput) => {
-    try {
-      const payload = {
-        ...data,
-        tenant_id: 'default',
-      };
-
-      const response = await login(payload);
-      const accessToken = response.data.data.access_token;
-      const refreshToken = response.data.data.refresh_token;
-
-      if (!accessToken) throw new Error('Token is missing');
-
-      Cookies.set('token', accessToken, {
-        secure: true,
-      });
-
-      Cookies.set('refresh_token', refreshToken, { secure: true });
-
-      dispatch(loginSuccess(accessToken));
-      toast.success('Login berhasil');
-      navigate('/dashboard');
-    } catch {
-      toast.error('Email atau password salah');
-    }
+  const onSubmit = (data: LoginAuthInput) => {
+    login(data, {
+      onSuccess: () => {
+        toast.success('Login berhasil');
+        navigate('/dashboard');
+      },
+      onError: () => {
+        toast.error('Email atau password salah');
+      },
+    });
   };
+  
 
   return (
     <form
@@ -108,12 +91,12 @@ export function LoginPage({
           <div className="grid gap-2">
             <div className="flex items-center">
               <Label htmlFor="password">Password</Label>
-              <a
-                href="#"
+              <Link
+                to="/forgot-password"
                 className="ml-auto text-sm underline-offset-4 hover:underline"
               >
                 Forgot your password?
-              </a>
+              </Link>
             </div>
             <div className="relative">
               <Input
