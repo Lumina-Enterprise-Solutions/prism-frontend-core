@@ -14,6 +14,8 @@ import { Card } from '../../components/atoms/Card';
 import { toast } from 'react-toastify';
 import { useLogin } from '../../features/auth/useAuth';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '../../store/slices/auth';
 
 type LoginAuthInput = z.infer<typeof loginSchema>;
 
@@ -29,6 +31,7 @@ export function LoginPage({
     resolver: zodResolver(loginSchema),
   });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { mutate: login, isPending } = useLogin();
   const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
@@ -52,7 +55,8 @@ export function LoginPage({
 
   const onSubmit = (data: LoginAuthInput) => {
     login(data, {
-      onSuccess: () => {
+      onSuccess: (res) => {
+        dispatch(loginSuccess(res.data.access_token));
         toast.success('Login berhasil');
         navigate('/dashboard');
       },
@@ -61,7 +65,7 @@ export function LoginPage({
       },
     });
   };
-  
+
 
   return (
     <form
@@ -74,13 +78,13 @@ export function LoginPage({
           {t('login.title', 'Login to your account')}
         </h1>
         <p className="text-balance text-sm text-muted-foreground">
-          {t('login.subtitle','Enter your email below to login to your account')}
+          {t('login.subtitle', 'Enter your email below to login to your account')}
         </p>
       </div>
       <Card className="p-4 md:p-6 w-full max-w-full">
         <div className="grid gap-6">
           <div className="grid gap-2">
-            <Label htmlFor="email">{t('form.email','Email')}</Label>
+            <Label htmlFor="email">{t('form.email', 'Email')}</Label>
             <Input
               {...register('email')}
               id="email"
@@ -113,6 +117,7 @@ export function LoginPage({
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-2 top-1/2 -translate-y-1/2 text-primary/50"
+                aria-label="Toggle password visibility"
               >
                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>

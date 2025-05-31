@@ -1,5 +1,3 @@
-
-import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/services/use-auth';
 import { useTenant } from '../../hooks/services/use-tenant';
 

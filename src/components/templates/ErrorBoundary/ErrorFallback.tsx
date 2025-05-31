@@ -10,7 +10,7 @@ export function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   }, [error]);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-4 text-center">
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-4 text-center bg-gradient-to-br from-primary-foreground to-primary">
       <h2 className="text-2xl font-bold text-red-600 mb-2">Oops! Ada kesalahan.</h2>
       <p className="text-gray-700 mb-4">{error.message}</p>
       <div className="flex gap-3">

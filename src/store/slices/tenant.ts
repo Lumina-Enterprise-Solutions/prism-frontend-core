@@ -14,7 +14,7 @@ const tenantSlice = createSlice({
   name: 'tenant',
   initialState,
   reducers: {
-    setTenant: (state, action: PayloadAction<TenantState>) => {
+    setTenant: (_state, action: PayloadAction<TenantState>) => {
       return action.payload;
     },
     clearTenant: () => initialState,

@@ -19,8 +19,7 @@ export const useLogin = () => {
     mutationFn: (data: { email: string; password: string }) =>
       axiosClient.post("/auth/login", data).then((res) => res.data),
     onSuccess: (data) => {
-      localStorage.setItem("token", data.token);
-      dispatch(loginSuccess(data.token));
+      dispatch(loginSuccess(data.data.access_token));
       queryClient.invalidateQueries({ queryKey: ["me"] });
     },
   });
@@ -35,4 +34,9 @@ export const useResetPassword = () =>
   useMutation({
     mutationFn: (data: { password: string, token?: string }) =>
       axiosClient.post("/auth/reset-password", data).then((res) => res.data),
+  });
+
+export const useLogout = () =>
+  useMutation({
+    mutationFn: () => axiosClient.post("/auth/logout"),
   });

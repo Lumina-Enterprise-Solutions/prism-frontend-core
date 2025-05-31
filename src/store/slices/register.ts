@@ -14,9 +14,8 @@ const initialState: RegisterState = {
   error: null,
 };
 
-// Async thunk untuk melakukan register
 export const registerUser = createAsyncThunk<
-  void, // return type
+  void,
   { email: string; password: string; first_name?: string, last_name?: string }, // input type
   { rejectValue: string } // error type
 >('auth/registerUser', async (userData, thunkAPI) => {

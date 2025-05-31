@@ -24,7 +24,11 @@ import {
   DropdownMenuTrigger,
 } from '../../ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '../../atoms/Avatar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useLogout } from '../../../features/auth/useAuth';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { logout } from '../../../store/slices/auth';
 
 export function NavUser({
   user,
@@ -36,6 +40,19 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { mutate: logoutMutation } = useLogout();
+
+  const onLogout = async () => {
+    try {
+      await logoutMutation();
+      dispatch(logout());
+      navigate("/login");
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
+  }
 
   return (
     <SidebarMenu className="text-sidebar-foreground">
@@ -110,7 +127,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-sidebar-foreground">
+            <DropdownMenuItem onClick={onLogout} className="text-sidebar-foreground">
               <LogOut />
               <Link to="#">Log out</Link>
             </DropdownMenuItem>
