@@ -9,7 +9,6 @@ export function ToastCustom() {
   return (
     <Button
       onClick={() => {
-        console.log('Click Triggered'); // log ini muncul?
         addToast({
           title: 'Toast Berhasil!',
           description: 'Ini adalah pesan toast.',

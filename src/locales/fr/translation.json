@@ -1,0 +1,28 @@
+{
+  "forgot_password": {
+    "title": "Forgot Password",
+    "subtitle": "Enter the email address with your account"
+  },
+  "form": {
+    "email": "Email",
+    "password": "Password",
+    "forgot_password": "Forgot your password?",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "emailPlaceholder": "m@example.com",
+    "passwordPlaceholder": "********",
+    "resetToken": "Token"
+  },
+  "login": {
+    "title": "Login to your account",
+    "subtitle": "Enter your email below to login to your account"
+  },
+  "register": {
+    "title": "Create an account",
+    "subtitle": "Enter your information to get started"
+  },
+  "reset_password": {
+    "title": "Reset Password",
+    "subtitle": "This password should be different from the previous password."
+  }
+}

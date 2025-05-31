@@ -1,0 +1,28 @@
+{
+  "forgot_password": {
+    "title": "Lupa Kata Sandi",
+    "subtitle": "Masukkan alamat email yang terdaftar pada akun Anda"
+  },
+  "form": {
+    "email": "Email",
+    "password": "Kata Sandi",
+    "forgot_password": "Lupa kata sandi?",
+    "firstName": "Nama Depan",
+    "lastName": "Nama Belakang",
+    "emailPlaceholder": "m@example.com",
+    "passwordPlaceholder": "********",
+    "resetToken": "Token"
+  },
+  "login": {
+    "title": "Masuk ke akun Anda",
+    "subtitle": "Masukkan email Anda untuk masuk ke akun"
+  },
+  "register": {
+    "title": "Buat akun",
+    "subtitle": "Masukkan informasi Anda untuk memulai"
+  },
+  "reset_password": {
+    "title": "Atur Ulang Kata Sandi",
+    "subtitle": "Kata sandi baru harus berbeda dari kata sandi sebelumnya."
+  }
+}

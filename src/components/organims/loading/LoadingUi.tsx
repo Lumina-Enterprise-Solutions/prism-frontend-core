@@ -110,7 +110,7 @@ export function LoadingUI({
 
         {/* Subtle gradient orbs using logo colors */}
         <motion.div
-          className="absolute left-1/4 top-1/4 w-[40vmax] h-[40vmax] rounded-full opacity-5 backdrop-blur-3xl bg-[#0D5C5B] blur-3xl"
+          className="absolute left-1/4 top-1/4 w-[40vmax] h-[40vmax] rounded-full opacity-5 primary bg-[#0D5C5B] blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             x: ['-10%', '0%', '-10%'],
