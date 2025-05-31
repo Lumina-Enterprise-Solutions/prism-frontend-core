@@ -23,8 +23,12 @@ export const registerUser = createAsyncThunk<
     await axios.post('/auth/register', userData, {
       withCredentials: true,
     });
-  } catch (error: any) {
-    return thunkAPI.rejectWithValue(error.response?.data?.message || 'Register failed');
+  } catch (error: unknown) {
+    console.error(error);
+    if (axios.isAxiosError(error) && error.response) {
+      return thunkAPI.rejectWithValue(error.response.data?.message || 'Register failed');
+    }
+    return thunkAPI.rejectWithValue('Register failed');
   }
 });
 

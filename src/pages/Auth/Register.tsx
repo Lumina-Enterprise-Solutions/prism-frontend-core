@@ -14,6 +14,7 @@ import { Card } from '../../components/atoms/Card';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useRegister } from '../../features/auth/useAuth';
+import axios from 'axios';
 
 type RegisterAuthInput = z.infer<typeof registerSchema>;
 
@@ -60,8 +61,11 @@ export function RegisterPage({
           toast.error(res?.error || res?.message);
         }
       },
-      onError: (error: any) => {
-        toast.error(error.message || 'Terjadi kesalahan. Silakan coba lagi.');
+      onError: (error: unknown) => {
+        if (axios.isAxiosError(error)) {
+          return toast.error(error.message || 'User already exist')
+        }
+        toast.error('User already exist');
       }
     })
   };

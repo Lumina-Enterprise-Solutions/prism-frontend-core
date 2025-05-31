@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import { axiosClient } from "../../api/apiClient";
 import { loginSuccess } from "../../store/slices/auth";
+import axios from "axios";
 
 // Register
 export const useRegister = () =>
@@ -10,8 +11,16 @@ export const useRegister = () =>
       try {
         const response = await axiosClient.post("/auth/register", data);
         return response.data;
-      } catch (error: any) {
-        const message = error.response?.data?.error || error.response?.data?.message || 'Registrasi gagal';
+      } catch (error: unknown) {
+        let message = 'Registrasi gagal';
+
+        if (axios.isAxiosError(error)) {
+          message =
+            error.response?.data?.error ||
+            error.response?.data?.message ||
+            'Registrasi gagal';
+        }
+
         throw new Error(message);
       }
     }
