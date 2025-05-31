@@ -61,7 +61,7 @@ export function LoginPage({
         navigate('/dashboard');
       },
       onError: () => {
-        toast.error('Email atau password salah');
+        toast.error('Email or password is missing');
       },
     });
   };

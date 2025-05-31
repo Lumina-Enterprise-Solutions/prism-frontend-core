@@ -1,14 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
 export const axiosClient = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
-    timeout: 10000,
-    headers: {
-        'Content-Type': 'application/json'
-    }
+  baseURL: import.meta.env.VITE_API_URL,
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json'
+  }
 })
 
 let isRefreshing = false;
@@ -16,15 +15,15 @@ let failedQueue: any[] = [];
 
 
 const processQueue = (error: any, token: string | null = null) => {
-    failedQueue.forEach((prom) => {
-      if (error) {
-        prom.reject(error);
-      } else {
-        prom.resolve(token);
-      }
-    });
-    failedQueue = [];
-  };
+  failedQueue.forEach((prom) => {
+    if (error) {
+      prom.reject(error);
+    } else {
+      prom.resolve(token);
+    }
+  });
+  failedQueue = [];
+};
 
 axiosClient.interceptors.request.use(
   (config) => {
@@ -63,7 +62,6 @@ axiosClient.interceptors.response.use(
       const refreshToken = Cookies.get('refresh_token');
 
       if (!refreshToken) {
-        toast.error('Session expired. Please login again.');
         isRefreshing = false;
         return Promise.reject(error);
       }
@@ -87,7 +85,6 @@ axiosClient.interceptors.response.use(
         return axiosClient(originalRequest);
       } catch (err) {
         processQueue(err, null);
-        toast.error('Session expired. Please login again.');
         return Promise.reject(err);
       } finally {
         isRefreshing = false;

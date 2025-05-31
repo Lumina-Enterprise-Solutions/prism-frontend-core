@@ -37,7 +37,7 @@ export function RegisterPage({
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1000); // 1 detik loading, bisa sesuaikan
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -52,12 +52,16 @@ export function RegisterPage({
 
   const onSubmit = async (data: RegisterAuthInput) => {
     registerUser(data, {
-      onSuccess: () => {
-        toast.success('Registrasi berhasil');
-        navigate('/login');
+      onSuccess: (res) => {
+        if (res?.success) {
+          toast.success(res?.message);
+          navigate('/login');
+        } else {
+          toast.error(res?.error || res?.message);
+        }
       },
-      onError: () => {
-        toast.error('Please try again')
+      onError: (error: any) => {
+        toast.error(error.message || 'Terjadi kesalahan. Silakan coba lagi.');
       }
     })
   };

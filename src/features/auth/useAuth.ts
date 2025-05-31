@@ -6,8 +6,15 @@ import { loginSuccess } from "../../store/slices/auth";
 // Register
 export const useRegister = () =>
   useMutation({
-    mutationFn: (data: { email: string; password: string; first_name: string, last_name: string }) =>
-      axiosClient.post("/auth/register", data).then((res) => res.data),
+    mutationFn: async (data: { email: string; password: string; first_name: string, last_name: string }) => {
+      try {
+        const response = await axiosClient.post("/auth/register", data);
+        return response.data;
+      } catch (error: any) {
+        const message = error.response?.data?.error || error.response?.data?.message || 'Registrasi gagal';
+        throw new Error(message);
+      }
+    }
   });
 
 // Login
