@@ -32,11 +32,18 @@ export const useLogin = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (data: { email: string; password: string }) =>
+    mutationFn: (data: { email: string; password: string, tenant_id: string }) =>
       axiosClient.post("/auth/login", data).then((res) => res.data),
     onSuccess: (data) => {
-      dispatch(loginSuccess(data.data.access_token));
-      queryClient.invalidateQueries({ queryKey: ["me"] });
+      const accessToken = data?.data?.access_token;
+      const tenantId = data?.data?.user?.tenant_id;
+
+      if (accessToken & tenantId) {
+        dispatch(loginSuccess({ access_token: accessToken, tenant_id: tenantId }));
+        queryClient.invalidateQueries({ queryKey: ["me"] });
+      } else {
+        console.error("Missing access token or tenant ID in response")
+      }
     },
   });
 };

@@ -69,7 +69,7 @@ export function ResetPasswordPage({
       {...props}
     >
       <div className="flex flex-col items-center gap-2 text-center text-foreground">
-        <h1 className="text-2xl font-bold dark:text-primary-foreground">
+        <h1 className="text-2xl font-bold">
           {t('reset_password.title', 'Reset Password')}
         </h1>
         <p className="text-balance text-sm text-muted-foreground">

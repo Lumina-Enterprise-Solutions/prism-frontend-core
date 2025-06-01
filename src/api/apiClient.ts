@@ -28,7 +28,7 @@ const processQueue = (error: any, token: string | null = null) => {
 axiosClient.interceptors.request.use(
   (config) => {
     const token = Cookies.get('access_token');
-    const tenantId = localStorage.getItem('tenant_id');
+    const tenantId = Cookies.get('tenant_id');
     if (token) config.headers.Authorization = `Bearer ${token}`;
     if (tenantId) config.headers['X-Tenant-ID'] = tenantId;
     return config;
@@ -73,9 +73,14 @@ axiosClient.interceptors.response.use(
 
         const newAccessToken = response.data?.data?.access_token;
         const newRefreshToken = response.data?.data?.refresh_token;
+        const tenant_id = response.data?.data?.user.tenant_id;
 
         Cookies.set('access_token', newAccessToken, { secure: true });
         Cookies.set('refresh_token', newRefreshToken, { secure: true });
+
+        if (tenant_id) {
+          Cookies.set('tenant_id', tenant_id, { secure: true });
+        }
 
         axiosClient.defaults.headers.common['Authorization'] = 'Bearer ' + newAccessToken;
 

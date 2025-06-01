@@ -1,9 +1,9 @@
-import { GalleryVerticalEnd } from 'lucide-react';
 import { Outlet } from 'react-router-dom';
 import LoginImage from '../../assets/images/Login.jpg';
 import { DarkModeToggle } from '../atoms/DarkModeToggle';
 import { LanguangeToggle } from '../atoms/LanguangeToggle';
 import { motion } from 'framer-motion';
+import logoPrism from '../../assets/images/logo/Prism_ERP_Logo.png'
 
 export default function AuthLayout() {
   const itemVariants = {
@@ -11,7 +11,7 @@ export default function AuthLayout() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   }
   return (
-    <div className="grid min-h-svh lg:grid-cols-2 bg-background dark:bg-foreground">
+    <div className="grid min-h-svh lg:grid-cols-2 bg-background">
       <div className="relative hidden bg-muted lg:block">
         {/* Background Image */}
         <img
@@ -21,7 +21,7 @@ export default function AuthLayout() {
         />
 
         {/* Overlay Background */}
-        <div className="absolute inset-0 bg-foreground/50 dark:bg-foreground/10" />
+        <div className="absolute inset-0 bg-foreground/50 dark:bg-background/10" />
 
         {/* Content Container */}
         <div className="relative z-10 flex flex-col justify-between h-full p-10">
@@ -90,11 +90,9 @@ export default function AuthLayout() {
           <div className="flex justify-center gap-2 md:justify-start">
             <a
               href="#"
-              className="flex items-center gap-2 font-medium dark:text-primary-foreground"
+              className="flex items-center gap-2 text-foreground font-semibold"
             >
-              <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
-                <GalleryVerticalEnd className="size-4" />
-              </div>
+              <img src={logoPrism} alt="Prism Logo" className="h-6" />
               Prism
             </a>
           </div>

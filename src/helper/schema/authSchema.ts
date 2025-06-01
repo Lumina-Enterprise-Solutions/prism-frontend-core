@@ -8,7 +8,9 @@ export const loginSchema = z
     password: z.string().min(8, {
       message: 'Password must be at least 8 characters.',
     }),
-    tenant_id: z.string().default('default').optional(),
+    tenant_id: z.string().min(1, {
+      message: 'Tenant is Missing'
+    }),
   })
   .refine((data) => data.email, {
     path: ['email'],
