@@ -12,6 +12,7 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
+  User,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -135,6 +136,11 @@ const data = {
         },
       ],
     },
+    {
+      title: 'User Management',
+      url: '/user-management',
+      icon: User,
+    }
   ],
   projects: [
     {

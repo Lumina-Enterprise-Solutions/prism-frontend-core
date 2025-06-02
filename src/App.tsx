@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import Dynamic404 from './pages/404/Dynamic404';
 import { ForgotPasswordPage } from './pages/Auth/ForgotPassword';
 import { ResetPasswordPage } from './pages/Auth/ResetPassword';
+import UserManagementPage from './pages/UserManagement';
 
 function App() {
   const location = useLocation();
@@ -62,6 +63,12 @@ function App() {
               path="/dashboard"
               element={
                 isAuthenticated ? <Dashboard /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/user-management"
+              element={
+                isAuthenticated ? <UserManagementPage /> : <Navigate to="/login" />
               }
             />
           </Route>
