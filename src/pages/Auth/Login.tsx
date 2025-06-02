@@ -117,7 +117,7 @@ export function LoginPage({
       <Card className="p-4 md:p-6 w-full max-w-full">
         {!selectedStatus ? (
           <div className="grid gap-6">
-            <Label className="text-center font-bold">Select Tenant</Label>
+            <Label className="text-center font-bold text-foreground">Select Tenant</Label>
             <RadioGroup
               className="grid grid-cols-3 justify-center"
               onValueChange={(value) => {
@@ -152,7 +152,7 @@ export function LoginPage({
                     setSelectedStatus(null);
                     setValue('tenant_id', '');
                   }}
-                  className="text-xs"
+                  className="text-xs text-foreground"
                 >
                   <Undo2 className="w-2 h-2" />
                   Select tenant
@@ -161,7 +161,7 @@ export function LoginPage({
             )}
             <div className="grid gap-6">
               <div className="grid gap-2">
-                <Label htmlFor="email">{t('form.email', 'Email')}</Label>
+                <Label htmlFor="email" className="text-foreground">{t('form.email', 'Email')}</Label>
                 <Input
                   {...register('email')}
                   id="email"
