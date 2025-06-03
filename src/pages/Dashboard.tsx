@@ -4,9 +4,11 @@ import { Separator } from '../components/ui/separator';
 import { ChartAreaInteractive } from '../components/molecules/ChartAreaInteractive';
 import { useEffect } from 'react';
 import { useTour } from '@reactour/tour';
+import { useTitle } from '../hooks/services/use-title';
 
 export default function Dashboard() {
   const { setIsOpen } = useTour();
+  useTitle('Dashboard | Prism');
 
   useEffect(() => {
     const hasSeenDashboardTour = localStorage.getItem('hasSeenDashboardTour');

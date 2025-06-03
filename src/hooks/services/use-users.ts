@@ -13,7 +13,7 @@ interface User {
     first_name: string;
     last_name: string;
     status: string;
-    roles: any[];
+    roles: string[];
     created_at: string;
     updated_at: string;
 }
@@ -61,7 +61,7 @@ export const useUpdateProfile = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: (data: any) => updateUserProfile(data),
+        mutationFn: (data: User) => updateUserProfile(data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['user-profile'] });
         },
@@ -72,7 +72,7 @@ export const useUpdateProfile = () => {
 export const useUpdateUser = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: ({ id, data }: { id: string; data: any }) => updateUser(id, data),
+        mutationFn: ({ id, data }: { id: string; data: User }) => updateUser(id, data),
         onSuccess: () => queryClient.invalidateQueries({ queryKey: ['users'] }),
     });
 };

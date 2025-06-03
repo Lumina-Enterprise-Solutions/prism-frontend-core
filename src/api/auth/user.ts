@@ -1,3 +1,4 @@
+import type { UserData } from "../../types/UserData";
 import { axiosClient } from "../apiClient";
 
 export const getAllUsers = (page = 1, limit = 10) =>
@@ -5,6 +6,6 @@ export const getAllUsers = (page = 1, limit = 10) =>
         params: { page, limit },
     });
 export const getUserProfile = () => axiosClient.get(`/users/profile`);
-export const updateUserProfile = (data: any) => axiosClient.put(`/users/profile`, data);
-export const updateUser = (id: string, data: any) => axiosClient.put(`/users/${id}`, data);
+export const updateUserProfile = (data: UserData) => axiosClient.put(`/users/profile`, data);
+export const updateUser = (id: string, data: UserData) => axiosClient.put(`/users/${id}`, data);
 export const deleteUser = (id: string) => axiosClient.delete(`/users/${id}`);

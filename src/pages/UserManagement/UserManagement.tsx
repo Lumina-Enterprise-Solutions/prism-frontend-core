@@ -3,8 +3,6 @@ import { Card, CardContent } from '../../components/atoms/Card';
 import {
   createActionsColumn,
   createBadgeColumn,
-  createNumberColumn,
-  createSelectionColumn,
   createSortableHeader,
 } from '../../components/molecules/advanced-data-table/Column';
 import { DataTable } from '../../components/molecules/advanced-data-table/DataTable';
@@ -12,14 +10,17 @@ import type { UserData } from '../../types/UserData';
 import { dummyUsers } from '../../helper/dummy/user-dummy';
 import type { Row } from '@tanstack/react-table';
 import { AvatarUser } from '../../components/atoms/Avatar';
+import { useTitle } from '../../hooks/services/use-title';
+import { useMemo } from 'react';
 // import { useUsers } from '../hooks/services/use-users';
 
 export default function UserManagementPage() {
   // Fetch data from the API
   //   const { data } = useUsers();
   //   const users = data?.data?.users ?? [];
+  useTitle('User Management | Prism');
   const users = dummyUsers;
-  const columns = [
+  const columns = useMemo(() => [
     {
       accessorKey: 'fullname',
       header: 'Full Name',
@@ -79,7 +80,8 @@ export default function UserManagementPage() {
         icon: <Trash className="h-4 w-4" />,
       },
     ]),
-  ];
+  ], []);
+
 
   const renderDetailPanel = ({ row }: { row: any }) => {
     const user = row.original;
