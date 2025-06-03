@@ -23,12 +23,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '../../ui/dropdown-menu';
-import { Avatar, AvatarFallback, AvatarImage } from '../../atoms/Avatar';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLogout } from '../../../features/auth/useAuth';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { logout } from '../../../store/slices/auth';
+import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
 
 export function NavUser({
   user,
@@ -48,12 +48,12 @@ export function NavUser({
     try {
       await logoutMutation();
       dispatch(logout());
-      navigate("/login");
+      navigate('/login');
     } catch (error) {
-      console.error(error)
-      toast.error("Something went wrong");
+      console.error(error);
+      toast.error('Something went wrong');
     }
-  }
+  };
 
   return (
     <SidebarMenu className="text-sidebar-foreground">
@@ -128,7 +128,10 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={onLogout} className="text-sidebar-foreground">
+            <DropdownMenuItem
+              onClick={onLogout}
+              className="text-sidebar-foreground"
+            >
               <LogOut />
               <Link to="#">Log out</Link>
             </DropdownMenuItem>

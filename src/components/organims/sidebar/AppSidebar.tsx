@@ -8,6 +8,7 @@ import {
   Command,
   Frame,
   GalleryVerticalEnd,
+  LayoutDashboard,
   Map,
   PieChart,
   Settings2,
@@ -51,6 +52,11 @@ const data = {
     },
   ],
   navMain: [
+    {
+      title: 'Dashboard',
+      url: '/dashboard',
+      icon: LayoutDashboard,
+    },
     {
       title: 'Playground',
       url: '#',
@@ -140,7 +146,7 @@ const data = {
       title: 'User Management',
       url: '/user-management',
       icon: User,
-    }
+    },
   ],
   projects: [
     {

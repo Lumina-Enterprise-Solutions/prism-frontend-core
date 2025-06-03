@@ -15,7 +15,9 @@ import { useSelector } from 'react-redux';
 import Dynamic404 from './pages/404/Dynamic404';
 import { ForgotPasswordPage } from './pages/Auth/ForgotPassword';
 import { ResetPasswordPage } from './pages/Auth/ResetPassword';
-import UserManagementPage from './pages/UserManagement';
+import UserManagementPage from './pages/UserManagement/UserManagement';
+import { TourProvider } from '@reactour/tour';
+import { steps } from './types/Step';
 
 function App() {
   const location = useLocation();
@@ -48,32 +50,33 @@ function App() {
   return (
     <AnimatePresence mode="wait">
       <I18nextProvider i18n={i18n}>
-        <Routes location={location} key={location.pathname}>
-          {/* Auth Routes */}
-          <Route element={<AuthLayout />}>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="/reset-password" element={<ResetPasswordPage />} />
-          </Route>
-
-          {/* Protected Routes */}
-          <Route element={<DefaultLayout />}>
-            <Route
+        <TourProvider steps={steps}>
+          <Routes location={location} key={location.pathname}>
+            {/* Auth Routes */}
+            <Route element={<AuthLayout />}>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+              <Route path="/reset-password" element={<ResetPasswordPage />} />
+            </Route>
+            {/* Protected Routes */}
+            <Route element={<DefaultLayout />}>
+              <Route
               path="/dashboard"
               element={
                 isAuthenticated ? <Dashboard /> : <Navigate to="/login" />
               }
-            />
-            <Route
+              />
+              <Route
               path="/user-management"
               element={
                 isAuthenticated ? <UserManagementPage /> : <Navigate to="/login" />
               }
             />
-          </Route>
-          <Route path="*" element={<Dynamic404 />} />
-        </Routes>
+            </Route>
+            <Route path="*" element={<Dynamic404 />} />
+          </Routes>
+        </TourProvider>
       </I18nextProvider>
     </AnimatePresence>
   );
