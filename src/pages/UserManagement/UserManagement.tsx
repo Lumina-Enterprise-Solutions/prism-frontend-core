@@ -18,70 +18,72 @@ export default function UserManagementPage() {
   // Fetch data from the API
   //   const { data } = useUsers();
   //   const users = data?.data?.users ?? [];
-  useTitle('User Management | Prism');
+  useTitle('User Management - Prism');
   const users = dummyUsers;
-  const columns = useMemo(() => [
-    {
-      accessorKey: 'fullname',
-      header: 'Full Name',
-      cell: ({ row }: { row: Row<UserData> }) => {
-        const { firstname, lastname } = row.original;
+  const columns = useMemo(
+    () => [
+      {
+        accessorKey: 'fullname',
+        header: 'Full Name',
+        cell: ({ row }: { row: Row<UserData> }) => {
+          const { firstname, lastname } = row.original;
 
-        return (
-          <div className="flex items-center gap-3">
-            <AvatarUser firstname={firstname} lastname={lastname} />
-            <div className="font-medium">
-              {firstname} {lastname}
+          return (
+            <div className="flex items-center gap-3">
+              <AvatarUser firstname={firstname} lastname={lastname} />
+              <div className="font-medium">
+                {firstname} {lastname}
+              </div>
             </div>
-          </div>
-        );
-      },
-    },
-    {
-      accessorKey: 'email',
-      header: createSortableHeader<UserData>('Email', 'email'),
-      cell: ({ row }: { row: Row<UserData> }) => {
-        return <div className="text-sm">{row.getValue('email')}</div>;
-      },
-    },
-    createBadgeColumn<UserData>('Role', 'role', {
-      admin: 'destructive',
-      manager: 'default',
-      user: 'secondary',
-      guest: 'outline',
-    }),
-    {
-      accessorKey: 'created_at',
-      header: 'Tanggal Pembuatan',
-      cell: ({ row }: { row: Row<UserData> }) => {
-        const rawDate = row.getValue('created_at') as string;
-        const formattedDate = new Date(rawDate).toLocaleDateString('id-ID', {
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric',
-        });
-        return <div className="text-sm">{formattedDate}</div>;
-      },
-    },
-    createActionsColumn<UserData>([
-      {
-        label: 'View Details',
-        onClick: (data) => console.log('View', data),
-        icon: <Eye className="h-4 w-4" />,
+          );
+        },
       },
       {
-        label: 'Edit',
-        onClick: (data) => console.log('Edit', data),
-        icon: <Edit className="h-4 w-4" />,
+        accessorKey: 'email',
+        header: createSortableHeader<UserData>('Email', 'email'),
+        cell: ({ row }: { row: Row<UserData> }) => {
+          return <div className="text-sm">{row.getValue('email')}</div>;
+        },
       },
+      createBadgeColumn<UserData>('Role', 'role', {
+        admin: 'destructive',
+        manager: 'default',
+        user: 'secondary',
+        guest: 'outline',
+      }),
       {
-        label: 'Delete',
-        onClick: (data) => console.log('Delete', data),
-        icon: <Trash className="h-4 w-4" />,
+        accessorKey: 'created_at',
+        header: 'Tanggal Pembuatan',
+        cell: ({ row }: { row: Row<UserData> }) => {
+          const rawDate = row.getValue('created_at') as string;
+          const formattedDate = new Date(rawDate).toLocaleDateString('id-ID', {
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric',
+          });
+          return <div className="text-sm">{formattedDate}</div>;
+        },
       },
-    ]),
-  ], []);
-
+      createActionsColumn<UserData>([
+        {
+          label: 'View Details',
+          onClick: (data) => console.log('View', data),
+          icon: <Eye className="h-4 w-4" />,
+        },
+        {
+          label: 'Edit',
+          onClick: (data) => console.log('Edit', data),
+          icon: <Edit className="h-4 w-4" />,
+        },
+        {
+          label: 'Delete',
+          onClick: (data) => console.log('Delete', data),
+          icon: <Trash className="h-4 w-4" />,
+        },
+      ]),
+    ],
+    []
+  );
 
   const renderDetailPanel = ({ row }: { row: any }) => {
     const user = row.original;

@@ -1,0 +1,185 @@
+import { Activity, ActivityIcon, TrendingUp } from 'lucide-react';
+import { Card, CardContent } from '../components/atoms/Card';
+import 'react-grid-layout/css/styles.css';
+import 'react-resizable/css/styles.css';
+import { Separator } from '../components/ui/separator';
+import { ChartAreaInteractive } from '../components/molecules/ChartAreaInteractive';
+import { useEffect, useMemo, useState } from 'react';
+import { useTour } from '@reactour/tour';
+import { useTitle } from '../hooks/services/use-title';
+import type { Row } from '@tanstack/react-table';
+import {
+  createBadgeColumn,
+  createCopyableColumn,
+  createSortableHeader,
+} from '../components/molecules/advanced-data-table/Column';
+import { DataTableCustoms } from '../components/molecules/advanced-data-table/DataTableCustoms';
+import { dummyProduct } from '../helper/dummy/product-dummy';
+import type { DummyProductType } from '../types/DummyProductTypes';
+import {
+  defaultLayouts,
+  getFromLS,
+  saveToLS,
+} from '../helper/react-layout-helper';
+import { Responsive, WidthProvider } from 'react-grid-layout';
+
+export default function Dashboard() {
+  useTitle('Dashboard - Prism');
+  const { setIsOpen } = useTour();
+  const [layouts, setLayouts] = useState(
+    getFromLS('layouts') || defaultLayouts
+  );
+  const ResponsiveGridLayout = WidthProvider(Responsive);
+
+  const onLayoutChange = (layout: any, allLayouts: any) => {
+    setLayouts(allLayouts);
+    saveToLS('layouts', allLayouts);
+  };
+
+  useEffect(() => {
+    const hasSeenDashboardTour = localStorage.getItem('hasSeenDashboardTour');
+    if (!hasSeenDashboardTour) {
+      setIsOpen(true);
+      localStorage.setItem('hasSeenDashboardTour', 'true');
+    }
+  }, [setIsOpen]);
+
+  const products = dummyProduct;
+
+  const columns = useMemo(
+    () => [
+      {
+        accessorKey: 'product_name',
+        header: createSortableHeader<DummyProductType>(
+          'Product Name',
+          'product_name'
+        ),
+        cell: ({ row }: { row: Row<DummyProductType> }) => {
+          return <div className="text-sm">{row.getValue('product_name')}</div>;
+        },
+      },
+      createCopyableColumn<DummyProductType>('Product Code', 'code'),
+      createCopyableColumn<DummyProductType>('SKU', 'sku'),
+      createBadgeColumn<DummyProductType>('Category', 'category', {
+        Accessories: 'destructive',
+        Label: 'default',
+        Fabric: 'secondary',
+        Elastic: 'gold',
+      }),
+      createBadgeColumn<DummyProductType>('Unit', 'unit', {
+        Meter: 'destructive',
+        Kilogram: 'default',
+        Roll: 'secondary',
+        Piece: 'gold',
+        Pack: 'outline',
+      }),
+      {
+        accessorKey: 'qty',
+        header: createSortableHeader<DummyProductType>('Quantity', 'qty'),
+        cell: ({ row }: { row: Row<DummyProductType> }) => {
+          return (
+            <div className="flex items-center gap-2">
+              <ActivityIcon size={16} />
+              <div className="text-sm">{row.getValue('qty')}</div>
+            </div>
+          );
+        },
+      },
+    ],
+    []
+  );
+
+  const renderDetailPanel = ({ row }: { row: any }) => {
+    const user = row.original;
+
+    return (
+      <div className="p-4">
+        <h3 className="text-lg font-medium mb-2">
+          User Details: {user.firstname} {user.lastname}
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-1">
+            <div className="text-sm text-muted-foreground">Email</div>
+            <div className="text-base">{user.email}</div>
+          </div>
+          <div className="space-y-1">
+            <div className="text-sm text-muted-foreground">Role</div>
+            <div className="capitalize">{user.role}</div>
+          </div>
+          <div className="space-y-1">
+            <div className="text-sm text-muted-foreground">Tanggal Dibuat</div>
+            <div>
+              {new Date(user.created_at).toLocaleDateString('id-ID', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric',
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="mx-auto w-full h-full sm:px-4 lg:px-6">
+      <Card className="overflow-hidden shadow-sm sm:rounded-lg">
+        <div className="px-10 pt-4 gap-1">
+          <h1 className="text-foreground text-3xl font-semibold tour-welcome">
+            Hello, <span className="font-normal">John Doe</span>
+          </h1>
+          <p className="text-muted-foreground text-sm font-light">
+            Track your businesse and peformance of your stategy
+          </p>
+        </div>
+        <ResponsiveGridLayout
+          className="layout"
+          layouts={layouts}
+          breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480 }}
+          cols={{ lg: 12, md: 10, sm: 6, xs: 4 }}
+          rowHeight={30}
+          isDraggable
+          isResizable
+          onLayoutChange={onLayoutChange}
+        >
+          <div key="overview1">
+            <div className="p-4 bg-muted rounded-lg shadow">
+              Product Overview 1
+            </div>
+          </div>
+          <div key="overview2">
+            <div className="p-4 bg-muted rounded-lg shadow">
+              Product Overview 2
+            </div>
+          </div>
+          <div key="overview3">
+            <div className="p-4 bg-muted rounded-lg shadow">
+              Product Overview 3
+            </div>
+          </div>
+          <div key="chart">
+            <ChartAreaInteractive />
+          </div>
+          <div key="sidecard1">
+            <Card className="p-4 h-full">Card 1</Card>
+          </div>
+          <div key="sidecard2">
+            <Card className="p-4 h-full">Card 2</Card>
+          </div>
+        </ResponsiveGridLayout>
+
+        <CardContent className="px-10 pt-4 space-y-2">
+          <h1 className="text-foreground text-3xl font-semibold tour-welcome">
+            Table Product
+          </h1>
+          <DataTableCustoms
+            columns={columns}
+            data={products}
+            enableGrouping={false}
+            renderDetailPanel={renderDetailPanel}
+          />
+        </CardContent>
+      </Card>
+    </div>
+  );
+}

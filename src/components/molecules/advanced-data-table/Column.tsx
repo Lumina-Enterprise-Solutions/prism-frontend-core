@@ -7,6 +7,9 @@ import {
   ArrowDown,
   ArrowUp,
   ArrowUpDown,
+  CheckIcon,
+  CopyIcon,
+  FileText,
   MoreHorizontal,
 } from 'lucide-react';
 import { useState } from 'react';
@@ -22,6 +25,12 @@ import {
 } from '../../ui/dropdown-menu';
 import { Badge } from '../../atoms/Badge';
 import CopyableCell from './CopyableCell';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '../../ui/tooltip';
 
 // Helper function to create sortable header
 export function createSortableHeader<T>(
@@ -146,7 +155,12 @@ export function createSelectionColumnNumber<T>(
   };
 }
 
-type BadgeVariant = 'default' | 'secondary' | 'destructive' | 'outline';
+type BadgeVariant =
+  | 'default'
+  | 'secondary'
+  | 'destructive'
+  | 'outline'
+  | 'gold';
 
 export function createBadgeColumn<T extends Record<string, any>>(
   header: string,
@@ -211,7 +225,25 @@ export function createCopyableColumn<T>(
         setTimeout(() => setCopied(false), 1500);
       };
 
-      return <CopyableCell value={value} />;
+      return (
+        <TooltipProvider>
+          <Tooltip>
+            <div className="flex items-center p-2 gap-1">
+              <FileText size={16} />
+              <TooltipTrigger asChild>
+                <span className="text-sm">{value}</span>
+              </TooltipTrigger>
+              <TooltipContent
+                onClick={handleCopy}
+                className="flex items-center space-x-2"
+              >
+                <span className="text-sm">{value}</span>
+                {copied ? <CheckIcon size={16} /> : <CopyIcon size={16} />}
+              </TooltipContent>
+            </div>
+          </Tooltip>
+        </TooltipProvider>
+      );
     },
   };
 }

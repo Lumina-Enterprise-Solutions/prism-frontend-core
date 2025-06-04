@@ -18,6 +18,7 @@ import { ResetPasswordPage } from './pages/Auth/ResetPassword';
 import UserManagementPage from './pages/UserManagement/UserManagement';
 import { TourProvider } from '@reactour/tour';
 import { steps } from './types/Step';
+import ProfilePage from './pages/Profile';
 
 function App() {
   const location = useLocation();
@@ -61,7 +62,10 @@ function App() {
             </Route>
             {/* Protected Routes */}
             <Route element={<DefaultLayout />}>
-              <Route
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/user-management" element={<UserManagementPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              {/* <Route
               path="/dashboard"
               element={
                 isAuthenticated ? <Dashboard /> : <Navigate to="/login" />
@@ -72,7 +76,7 @@ function App() {
               element={
                 isAuthenticated ? <UserManagementPage /> : <Navigate to="/login" />
               }
-            />
+            /> */}
             </Route>
             <Route path="*" element={<Dynamic404 />} />
           </Routes>

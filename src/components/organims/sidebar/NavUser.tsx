@@ -116,7 +116,7 @@ export function NavUser({
             <DropdownMenuGroup>
               <DropdownMenuItem className="text-sidebar-foreground">
                 <BadgeCheck />
-                <Link to="#">Account</Link>
+                <Link to="/profile">Account</Link>
               </DropdownMenuItem>
               <DropdownMenuItem className="text-sidebar-foreground">
                 <CreditCard />

@@ -16,35 +16,34 @@ import { useLogin } from '../../features/auth/useAuth';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../../store/slices/auth';
-import { RadioGroup, RadioGroupItem } from '../../components/ui/radio-group';
+import { RadioGroup } from '../../components/ui/radio-group';
 import { motion } from 'framer-motion';
-
 
 type LoginAuthInput = z.infer<typeof loginSchema>;
 
 type TenantType = {
-  label: string,
-  value: string,
-  logo: any
-}
+  label: string;
+  value: string;
+  logo: React.ComponentType<any>;
+};
 
 const TenantId: TenantType[] = [
   {
     label: 'Default',
     value: 'default',
-    logo: Factory
+    logo: Factory,
   },
   {
     label: 'Acme',
     value: 'acme',
-    logo: Building
+    logo: Building,
   },
   {
     label: 'Beta',
     value: 'beta',
-    logo: Building2
-  }
-]
+    logo: Building2,
+  },
+];
 
 export function LoginPage({
   className,
@@ -64,14 +63,12 @@ export function LoginPage({
   const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedStatus, setSelectedStatus] = useState<TenantType | null>(
-    null
-  )
+  const [selectedStatus, setSelectedStatus] = useState<TenantType | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1000); // 1 detik loading, bisa sesuaikan
+    }, 1000); // 1 detik loading
 
     return () => clearTimeout(timer);
   }, []);
@@ -87,10 +84,12 @@ export function LoginPage({
   const onSubmit = (data: LoginAuthInput) => {
     login(data, {
       onSuccess: (res) => {
-        dispatch(loginSuccess({
-          access_token: res.data.access_token,
-          tenant_id: res.data.user.tenant_id
-        }));
+        dispatch(
+          loginSuccess({
+            access_token: res.data.access_token,
+            tenant_id: res.data.user.tenant_id,
+          })
+        );
         toast.success('Login berhasil');
         navigate('/dashboard');
       },
@@ -111,32 +110,55 @@ export function LoginPage({
           {t('login.title', 'Login to your account')}
         </h1>
         <p className="text-balance text-sm text-muted-foreground">
-          {t('login.subtitle', 'Enter your email below to login to your account')}
+          {t(
+            'login.subtitle',
+            'Enter your email below to login to your account'
+          )}
         </p>
       </div>
       <Card className="p-4 md:p-6 w-full max-w-full">
         {!selectedStatus ? (
           <div className="grid gap-6">
-            <Label className="text-center font-bold text-foreground">Select Tenant</Label>
+            <Label className="text-center font-bold text-foreground">
+              Select Tenant
+            </Label>
             <RadioGroup
               className="grid grid-cols-3 justify-center"
               onValueChange={(value) => {
-                const selectedTenant = TenantId.find((t) => t.value === value) || null;
+                const selectedTenant =
+                  TenantId.find((t) => t.value === value) || null;
                 setSelectedStatus(selectedTenant);
                 setValue('tenant_id', value);
               }}
             >
               {TenantId.map((tenant) => (
-                <div key={tenant.value} className="flex flex-col items-center space-y-2">
-                  <motion.div whileHover={{ y: 3, scale: 1.1 }} transition={{ type: "spring", stiffness: 200, damping: 10 }}>
-                    <Card className="w-[100px] bg-primary">
+                <div
+                  key={tenant.value}
+                  className="flex flex-col items-center space-y-2"
+                >
+                  <motion.div
+                    whileHover={{ y: 3, scale: 1.1 }}
+                    transition={{ type: 'spring', stiffness: 200, damping: 10 }}
+                    onClick={() => {
+                      const selectedTenant =
+                        TenantId.find((t) => t.value === tenant.value) || null;
+                      setSelectedStatus(selectedTenant);
+                      setValue('tenant_id', tenant.value);
+                    }}
+                  >
+                    <Card
+                      className={`w-[100px] bg-primary ${
+                        (selectedStatus as any)?.value === tenant.value
+                          ? ''
+                          : ''
+                      }`}
+                    >
                       <div className="flex flex-col gap-2 items-center justify-center py-6 px-4 font-bold text-accent-foreground">
                         <tenant.logo className="w-6 h-6" />
                         <Label>{tenant.label}</Label>
                       </div>
                     </Card>
                   </motion.div>
-                  <RadioGroupItem value={tenant.value} />
                 </div>
               ))}
             </RadioGroup>
@@ -161,7 +183,9 @@ export function LoginPage({
             )}
             <div className="grid gap-6">
               <div className="grid gap-2">
-                <Label htmlFor="email" className="text-foreground">{t('form.email', 'Email')}</Label>
+                <Label htmlFor="email" className="text-foreground">
+                  {t('form.email', 'Email')}
+                </Label>
                 <Input
                   {...register('email')}
                   id="email"
@@ -169,12 +193,16 @@ export function LoginPage({
                   placeholder="m@example.com"
                   required
                 />
-                {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+                {errors.email && (
+                  <p className="text-red-500 text-sm">{errors.email.message}</p>
+                )}
               </div>
 
               <div className="grid gap-2">
                 <div className="flex items-center">
-                  <Label htmlFor="password">{t('form.password', 'Password')}</Label>
+                  <Label htmlFor="password">
+                    {t('form.password', 'Password')}
+                  </Label>
                   <Link
                     to="/forgot-password"
                     className="ml-auto text-sm underline-offset-4 hover:underline"
