@@ -12,7 +12,7 @@ import { store } from './store/index.ts';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ToastContainer } from 'react-toastify';
 import { ErrorBoundary } from 'react-error-boundary';
-import { ErrorFallback } from './components/templates/ErrorBoundary/ErrorFallback.tsx';
+import { ErrorFallback } from './components/templates/ErrorBoundary/error-fallback.tsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {

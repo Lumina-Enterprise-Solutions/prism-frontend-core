@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import DefaultLayout from '../../components/templates/DefaultLayout';
+import DefaultLayout from '../../components/templates/default-layout';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 function DummyContent() {

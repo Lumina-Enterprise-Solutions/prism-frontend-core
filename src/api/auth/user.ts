@@ -1,4 +1,4 @@
-import type { UserData } from "../../types/UserData";
+import type { UserData } from "../../types/user-data-types";
 import { axiosClient } from "../apiClient";
 
 export const getAllUsers = (page = 1, limit = 10) =>
