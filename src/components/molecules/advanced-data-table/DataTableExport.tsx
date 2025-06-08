@@ -19,7 +19,7 @@ import {
   DropdownMenuTrigger,
 } from '../../ui/dropdown-menu';
 import { Button } from '../../atoms/Button';
-import { useDataTable } from './data-table-context';
+import { useDataTable } from './DataTableContext';
 
 export function DataTableExport() {
   const { table, exportFilename, tableContainerRef } = useDataTable();

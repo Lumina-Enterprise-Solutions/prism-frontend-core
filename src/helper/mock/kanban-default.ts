@@ -1,4 +1,4 @@
-import type { Column } from "../../components/molecules/kanban-board/board-column";
+import type { Column } from "../../components/molecules/kanban-board/BoardColumn";
 
 export const defaultCols = [
     {

@@ -1,15 +1,15 @@
 // Component exports
-export { AgendaView } from './agent-view';
-export { DayView } from './day-view';
-export { DraggableEvent } from './draggable-event';
-export { DroppableCell } from './droppable-cell';
-export { EventDialog } from './event-dialog';
-export { EventItem } from './event-item';
-export { EventsPopup } from './events-popup';
-export { EventCalendar } from './event-calendar';
-export { MonthView } from './month-view';
-export { WeekView } from './week-view';
-export { CalendarDndProvider, useCalendarDnd } from './calendar-dnd-context';
+export { AgendaView } from './AgentView';
+export { DayView } from './DayView';
+export { DraggableEvent } from './DraggableEvent';
+export { DroppableCell } from './DropableCell';
+export { EventDialog } from './EventDialog';
+export { EventItem } from './EventItem';
+export { EventsPopup } from './EventPopup';
+export { EventCalendar } from './EventCalendar';
+export { MonthView } from './MonthView';
+export { WeekView } from './WeekView';
+export { CalendarDndProvider, useCalendarDnd } from './CalendarDndContext';
 
 // Constants and utility exports
 export * from '../../../helper/constant/calendart-constant';

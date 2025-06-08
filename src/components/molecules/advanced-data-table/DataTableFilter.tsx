@@ -1,7 +1,7 @@
 'use client';
 import { Filter, X } from 'lucide-react';
 import { ScrollArea } from '../../ui/scroll-area';
-import { useDataTable } from './data-table-context';
+import { useDataTable } from './DataTableContext';
 import { Popover, PopoverContent, PopoverTrigger } from '../../ui/popover';
 import { Button } from '../../atoms/Button';
 import { Badge } from '../../atoms/Badge';

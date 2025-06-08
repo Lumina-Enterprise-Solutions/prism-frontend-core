@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { RiCalendarCheckLine } from '@remixicon/react';
 import {
   addDays,
@@ -31,7 +31,7 @@ import {
   EventHeight,
   WeekCellsHeight,
 } from '../../../helper/constant/calendart-constant';
-import { CalendarDndProvider } from './calendar-dnd-context';
+import { CalendarDndProvider } from './CalendarDndContext';
 import { Button } from '../../atoms/Button';
 import {
   DropdownMenu,
@@ -169,28 +169,31 @@ export function EventCalendar({
     setIsEventDialogOpen(true);
   };
 
-  const handleEventSave = (event: CalendarEvent) => {
-    if (event.id) {
-      onEventUpdate?.(event);
-      // Show toast notification when an event is updated
-      toast(`Event "${event.title}" updated`, {
-        description: format(new Date(event.start), 'MMM d, yyyy'),
-        position: 'bottom-left',
-      });
-    } else {
-      onEventAdd?.({
-        ...event,
-        id: Math.random().toString(36).substring(2, 11),
-      });
-      // Show toast notification when an event is added
-      toast(`Event "${event.title}" added`, {
-        description: format(new Date(event.start), 'MMM d, yyyy'),
-        position: 'bottom-left',
-      });
-    }
-    setIsEventDialogOpen(false);
-    setSelectedEvent(null);
-  };
+  const handleEventSave = useCallback(
+    (event: CalendarEvent) => {
+      if (event.id) {
+        onEventUpdate?.(event);
+        // Show toast notification when an event is updated
+        toast(`Event "${event.title}" updated`, {
+          description: format(new Date(event.start), 'MMM d, yyyy'),
+          position: 'bottom-left',
+        });
+      } else {
+        onEventAdd?.({
+          ...event,
+          id: Math.random().toString(36).substring(2, 11),
+        });
+        // Show toast notification when an event is added
+        toast(`Event "${event.title}" added`, {
+          description: format(new Date(event.start), 'MMM d, yyyy'),
+          position: 'bottom-left',
+        });
+      }
+      setIsEventDialogOpen(false);
+      setSelectedEvent(null);
+    },
+    [onEventAdd, onEventUpdate]
+  );
 
   const handleEventDelete = (eventId: string) => {
     const deletedEvent = events.find((e) => e.id === eventId);

@@ -1,3 +1,3 @@
-export * from './board-column'
-export * from '../../templates/Dashboard/kanban-board-template'
-export * from './task-card'
+export * from './BoardColumn'
+export * from '../../templates/Dashboard/KanbanBoardTemplate'
+export * from './TaskCard'

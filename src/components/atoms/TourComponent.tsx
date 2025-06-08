@@ -34,8 +34,8 @@ export const TourWrapper = ({ children }: { children: React.ReactNode }) => {
 // Separate component to control the tour using useTour()
 const TourStarter = ({
   isOpen,
-  onClose,
-}: {
+}: // onClose,
+{
   isOpen: boolean;
   onClose: () => void;
 }) => {

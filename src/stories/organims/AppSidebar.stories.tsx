@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { AppSidebar } from '../../components/organims/sidebar/app-sidebar';
+import { AppSidebar } from '../../components/organims/sidebar/AppSidebar';
 import { SidebarProvider } from '../../components/ui/sidebar';
 
 const meta = {

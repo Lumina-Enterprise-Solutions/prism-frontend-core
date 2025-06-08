@@ -4,7 +4,7 @@ export const dummyUsers = [
     firstname: 'Andi',
     lastname: 'Saputra',
     email: 'andi.saputra@example.com',
-    role: 'admin',
+    role: ['admin'],
     created_at: '2024-11-20T10:00:00Z',
   },
   {
@@ -12,7 +12,7 @@ export const dummyUsers = [
     firstname: 'Budi',
     lastname: 'Santoso',
     email: 'budi.santoso@example.com',
-    role: 'user',
+    role: ['user'],
     created_at: '2024-12-01T09:30:00Z',
   },
   {
@@ -20,7 +20,7 @@ export const dummyUsers = [
     firstname: 'Citra',
     lastname: 'Lestari',
     email: 'citra.lestari@example.com',
-    role: 'manager',
+    role: ['manager'],
     created_at: '2025-01-15T14:20:00Z',
   },
   {
@@ -28,7 +28,7 @@ export const dummyUsers = [
     firstname: 'Dewi',
     lastname: 'Kartika',
     email: 'dewi.kartika@example.com',
-    role: 'user',
+    role: ['user'],
     created_at: '2025-03-10T08:45:00Z',
   },
   {
@@ -36,7 +36,7 @@ export const dummyUsers = [
     firstname: 'Eko',
     lastname: 'Prasetyo',
     email: 'eko.prasetyo@example.com',
-    role: 'admin',
+    role: ['admin'],
     created_at: '2025-04-05T16:10:00Z',
   },
   {
@@ -44,7 +44,7 @@ export const dummyUsers = [
     firstname: 'Fajar',
     lastname: 'Hidayat',
     email: 'fajar.hidayat@example.com',
-    role: 'editor',
+    role: ['editor'],
     created_at: '2025-04-10T12:00:00Z',
   },
   {
@@ -52,7 +52,7 @@ export const dummyUsers = [
     firstname: 'Gita',
     lastname: 'Nugraha',
     email: 'gita.nugraha@example.com',
-    role: 'user',
+    role: ['user'],
     created_at: '2025-04-12T13:15:00Z',
   },
   {
@@ -60,7 +60,7 @@ export const dummyUsers = [
     firstname: 'Hari',
     lastname: 'Kusuma',
     email: 'hari.kusuma@example.com',
-    role: 'manager',
+    role: ['manager'],
     created_at: '2025-04-14T10:30:00Z',
   },
   {
@@ -68,7 +68,7 @@ export const dummyUsers = [
     firstname: 'Intan',
     lastname: 'Permata',
     email: 'intan.permata@example.com',
-    role: 'admin',
+    role: ['admin'],
     created_at: '2025-04-15T08:00:00Z',
   },
   {
@@ -76,7 +76,7 @@ export const dummyUsers = [
     firstname: 'Joko',
     lastname: 'Susilo',
     email: 'joko.susilo@example.com',
-    role: 'user',
+    role: ['user'],
     created_at: '2025-04-16T09:20:00Z',
   },
   {
@@ -84,7 +84,7 @@ export const dummyUsers = [
     firstname: 'Kiki',
     lastname: 'Andayani',
     email: 'kiki.andayani@example.com',
-    role: 'editor',
+    role: ['editor'],
     created_at: '2025-04-17T11:45:00Z',
   },
   {
@@ -92,7 +92,7 @@ export const dummyUsers = [
     firstname: 'Lina',
     lastname: 'Wijaya',
     email: 'lina.wijaya@example.com',
-    role: 'user',
+    role: ['user'],
     created_at: '2025-04-18T14:00:00Z',
   },
   {
@@ -100,7 +100,7 @@ export const dummyUsers = [
     firstname: 'Miko',
     lastname: 'Setiawan',
     email: 'miko.setiawan@example.com',
-    role: 'admin',
+    role: ['admin'],
     created_at: '2025-04-19T07:10:00Z',
   },
   {
@@ -108,7 +108,7 @@ export const dummyUsers = [
     firstname: 'Nina',
     lastname: 'Ramadhani',
     email: 'nina.ramadhani@example.com',
-    role: 'user',
+    role: ['user'],
     created_at: '2025-04-20T16:00:00Z',
   },
   {
@@ -116,7 +116,7 @@ export const dummyUsers = [
     firstname: 'Oscar',
     lastname: 'Gunawan',
     email: 'oscar.gunawan@example.com',
-    role: 'manager',
+    role: ['manager'],
     created_at: '2025-04-21T08:20:00Z',
   },
   {
@@ -124,7 +124,7 @@ export const dummyUsers = [
     firstname: 'Putri',
     lastname: 'Mahardika',
     email: 'putri.mahardika@example.com',
-    role: 'editor',
+    role: ['editor'],
     created_at: '2025-04-22T09:30:00Z',
   },
   {
@@ -132,7 +132,7 @@ export const dummyUsers = [
     firstname: 'Qori',
     lastname: 'Fadilah',
     email: 'qori.fadilah@example.com',
-    role: 'user',
+    role: ['user'],
     created_at: '2025-04-23T10:40:00Z',
   },
   {
@@ -140,7 +140,7 @@ export const dummyUsers = [
     firstname: 'Rafi',
     lastname: 'Pradana',
     email: 'rafi.pradana@example.com',
-    role: 'admin',
+    role: ['admin'],
     created_at: '2025-04-24T11:50:00Z',
   },
   {
@@ -148,7 +148,7 @@ export const dummyUsers = [
     firstname: 'Sinta',
     lastname: 'Nuraini',
     email: 'sinta.nuraini@example.com',
-    role: 'user',
+    role: ['user'],
     created_at: '2025-04-25T12:00:00Z',
   },
   {
@@ -156,7 +156,7 @@ export const dummyUsers = [
     firstname: 'Taufik',
     lastname: 'Halim',
     email: 'taufik.halim@example.com',
-    role: 'editor',
+    role: ['editor'],
     created_at: '2025-04-26T13:10:00Z',
   },
 ];

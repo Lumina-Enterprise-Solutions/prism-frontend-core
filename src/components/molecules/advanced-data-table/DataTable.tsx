@@ -21,9 +21,9 @@ import {
   type GroupingState,
 } from '@tanstack/react-table';
 
-import { DataTableToolbar } from './data-table-toolbar';
-import { DataTablePagination } from './data-table-pegination';
-import { DataTableProvider } from './data-table-context';
+import { DataTableToolbar } from './DataTableToolbar';
+import { DataTablePagination } from './DataTablePagination';
+import { DataTableProvider } from './DataTableContext';
 import {
   Table,
   TableBody,
@@ -82,14 +82,14 @@ export interface DataTableProps<TData, TValue> {
   variant?: 'default' | 'minimal' | 'card';
 }
 
-export function DataTableCustoms<TData, TValue>({
+export function DataTable<TData, TValue>({
   columns,
   data,
   searchKey,
   searchPlaceholder = 'Search...',
   showColumnToggle = true,
   showPagination = true,
-  pageSize = 5,
+  pageSize = 10,
   title,
   description,
   exportData = false,

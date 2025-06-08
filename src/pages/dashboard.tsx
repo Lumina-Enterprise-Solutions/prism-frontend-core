@@ -5,9 +5,9 @@ import { useTitle } from '../hooks/services/use-title';
 import { Tabs, TabsContent, TabsTrigger } from '../components/ui/tab';
 import { TabsList } from '@radix-ui/react-tabs';
 import { tabs } from '../helper/mock/tab-dashboard';
-import DashboardTemplate from '../components/templates/Dashboard/dashboard-template';
-import EventCalendarTemplate from '../components/templates/Dashboard/event-calendar-template';
-import { KanbanBoard } from '../components/templates/Dashboard/kanban-board-template';
+import DashboardTemplate from '../components/templates/Dashboard/DashboardTemplate';
+import EventCalendarTemplate from '../components/templates/Dashboard/EventCalendarTemplate';
+import { KanbanBoard } from '../components/templates/Dashboard/KanbanBoardTemplate';
 
 export default function Dashboard() {
   const { setIsOpen } = useTour();

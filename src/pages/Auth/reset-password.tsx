@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { useResetPassword } from '../../features/auth/useAuth';
 import { z } from 'zod';
 import { Eye, EyeOff } from 'lucide-react';
-import SkeletonReset from '../../components/organims/loading/skeleton-reset';
+import SkeletonReset from '../../components/organims/loading/SkeletonReset';
 
 type ResetPasswordInput = z.infer<typeof resetPasswordSchema>;
 

@@ -9,12 +9,12 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '../../ui/tooltip';
-import { DataTableSavedViews } from './data-table-save-view';
-import { DataTableGrouping } from './data-table-group';
-import { DataTableViewOptions } from './data-table-view-options';
-import { DataTableExport } from './data-table-export';
-import { DataTableFilters } from './data-table-filter';
-import { useDataTable } from './data-table-context';
+import { DataTableSavedViews } from './DataTableSave';
+import { DataTableGrouping } from './DataTableGroup';
+import { DataTableViewOptions } from './DataTableViewOptions';
+import { DataTableExport } from './DataTableExport';
+import { DataTableFilters } from './DataTableFilter';
+import { useDataTable } from './DataTableContext';
 
 export function DataTableToolbar() {
   const {

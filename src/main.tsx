@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import './i18n';
 import App from './App.tsx';
-import { ToastContextProvider } from './hooks/use-toast.tsx';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from './components/theme-provider.tsx';
 import { Provider } from 'react-redux';
@@ -13,6 +12,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ToastContainer } from 'react-toastify';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorFallback } from './components/templates/ErrorBoundary/error-fallback.tsx';
+import { ToastContextProvider } from './components/ToastProvider.tsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,10 +31,10 @@ createRoot(document.getElementById('root')!).render(
         <BrowserRouter>
           <ThemeProvider>
             <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <ToastContextProvider>
-              <App />
-            <ToastContainer position="top-right" autoClose={5000} />
-            </ToastContextProvider>
+              <ToastContextProvider>
+                <App />
+                <ToastContainer position="top-right" autoClose={5000} />
+              </ToastContextProvider>
             </ErrorBoundary>
           </ThemeProvider>
         </BrowserRouter>

@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from '../../components/atoms/Avatar';
+} from '../../components/ui/avatar';
 
 const meta = {
   component: Avatar,

@@ -10,10 +10,10 @@ import { axiosClient } from '../../api/apiClient';
 interface User {
     id: string;
     email: string;
-    first_name: string;
-    last_name: string;
+    firstname: string;
+    lastname: string;
     status: string;
-    roles: string[];
+    role: string[];
     created_at: string;
     updated_at: string;
 }

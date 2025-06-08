@@ -7,7 +7,7 @@ import { forgotPasswordSchema } from '../../helper/schema/authSchema';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
-import SkeletonReset from '../../components/organims/loading/skeleton-reset';
+import SkeletonReset from '../../components/organims/loading/SkeletonReset';
 import { Card } from '../../components/atoms/Card';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';

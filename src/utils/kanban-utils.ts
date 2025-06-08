@@ -1,6 +1,6 @@
 import { type Active, type DataRef,type Over } from "@dnd-kit/core";
-import type { ColumnDragData } from "../components/molecules/kanban-board/board-column";
-import type { TaskDragData } from "../components/molecules/kanban-board/task-card";
+import type { ColumnDragData } from "../components/molecules/kanban-board/BoardColumn";
+import type { TaskDragData } from "../components/molecules/kanban-board/TaskCard";
 
 type DraggableData = ColumnDragData | TaskDragData;
 

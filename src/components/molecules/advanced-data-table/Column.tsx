@@ -24,7 +24,6 @@ import {
   DropdownMenuTrigger,
 } from '../../ui/dropdown-menu';
 import { Badge } from '../../atoms/Badge';
-import CopyableCell from './copyable-cell';
 import {
   Tooltip,
   TooltipContent,
@@ -35,7 +34,7 @@ import {
 // Helper function to create sortable header
 export function createSortableHeader<T>(
   label: string,
-  accessor: keyof T
+  _accessor: keyof T
 ): ColumnDef<T>['header'] {
   return ({ column }) => {
     return (

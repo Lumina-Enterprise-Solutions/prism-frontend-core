@@ -41,6 +41,21 @@ export function KanbanBoard() {
 
   const [activeTask, setActiveTask] = useState<Task | null>(null);
 
+  const handleAddTask = (columnId: UniqueIdentifier, data: any) => {
+    const newTask: Task = {
+      columnId: columnId as 'todo' | 'in-progress' | 'done' | 'group',
+      title: data.title,
+      description: data.description,
+      assignedTo: data.assignedTo,
+      startDate: data.startDate,
+      endDate: data.endDate,
+      color: data.color,
+      priority: data.priority,
+      id: 'task-' + Math.random().toString(36).substr(2, 9),
+    };
+    setTasks((prev) => [...prev, newTask]);
+  };
+
   const sensors = useSensors(
     useSensor(MouseSensor),
     useSensor(TouchSensor),
@@ -76,7 +91,7 @@ export function KanbanBoard() {
           pickedUpTaskColumn.current
         );
         return `Picked up Task ${
-          active.data.current.task.content
+          active.data.current.task.description
         } at position: ${taskPosition + 1} of ${
           tasksInColumn.length
         } in column ${column?.title}`;
@@ -103,7 +118,7 @@ export function KanbanBoard() {
         );
         if (over.data.current.task.columnId !== pickedUpTaskColumn.current) {
           return `Task ${
-            active.data.current.task.content
+            active.data.current.task.description
           } was moved over column ${column?.title} in position ${
             taskPosition + 1
           } of ${tasksInColumn.length}`;
@@ -173,6 +188,7 @@ export function KanbanBoard() {
                 key={col.id}
                 column={col}
                 tasks={tasks.filter((task) => task.columnId === col.id)}
+                onAddTask={(data) => handleAddTask(col.id, data)}
               />
             ))}
           </SortableContext>

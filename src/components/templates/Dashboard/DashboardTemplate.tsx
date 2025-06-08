@@ -1,7 +1,7 @@
 import { Activity, ActivityIcon, TrendingUp } from 'lucide-react';
 import { Card, CardContent } from '../../atoms/Card';
 import { ChartAreaInteractive } from '../../molecules/ChartAreaInteractive';
-import { DataTableCustoms } from '../../molecules/advanced-data-table/data-table-customs';
+import { DataTableCustoms } from '../../molecules/advanced-data-table/DataTableCustoms';
 import { useMemo } from 'react';
 import { dummyProduct } from '../../../helper/mock/product-dummy';
 import type { DummyProductType } from '../../../types/dummy-product-types';
@@ -9,7 +9,7 @@ import {
   createBadgeColumn,
   createCopyableColumn,
   createSortableHeader,
-} from '../../molecules/advanced-data-table/column';
+} from '../../molecules/advanced-data-table/Column';
 import type { Row } from '@tanstack/react-table';
 
 export default function DashboardTemplate() {

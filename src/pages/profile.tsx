@@ -1,5 +1,4 @@
 import { UserPen } from 'lucide-react';
-import { Button } from '../components/atoms/Button';
 import { Card } from '../components/atoms/Card';
 import { useTitle } from '../hooks/services/use-title';
 import { Avatar, AvatarFallback, AvatarImage } from '../components/ui/avatar';
@@ -9,7 +8,7 @@ import { Input } from '../components/atoms/Input';
 import { Textarea } from '../components/ui/textarea';
 import { useTranslation } from 'react-i18next';
 import { ProfileDetail } from '../helper/mock/profile-details-dummy';
-import { DynamicDialogForm } from '../components/molecules/DialogZoom';
+import { DynamicDialogForm } from '../components/molecules/advanced-dialog/DialogZoom';
 import { profileSchema } from '../helper/schema/profileSchema';
 
 export default function ProfilePage() {
@@ -33,11 +32,57 @@ export default function ProfilePage() {
               triggerText="Edit Profile"
               icon={UserPen}
               fields={[
-                { name: 'name', label: 'Name', placeholder: 'Enter your name' },
                 {
-                  name: 'username',
-                  label: 'Username',
-                  placeholder: 'Enter your username',
+                  name: 'profile_image',
+                  label: 'Profile Image',
+                  type: 'file',
+                  colSpan: 2,
+                },
+                {
+                  name: 'first_name',
+                  label: 'First Name',
+                  placeholder: 'Enter your first name',
+                },
+                {
+                  name: 'last_name',
+                  label: 'Last Name',
+                  placeholder: 'Enter your last name',
+                },
+                {
+                  name: 'email',
+                  label: 'Email',
+                  placeholder: 'Enter your email',
+                },
+                {
+                  name: 'phone',
+                  label: 'Phone',
+                  placeholder: 'Enter your phone',
+                },
+                {
+                  name: 'date',
+                  label: 'Date',
+                  placeholder: 'Enter your date',
+                },
+                {
+                  name: 'description',
+                  label: 'Description',
+                  placeholder: 'Enter your description',
+                  colSpan: 2,
+                },
+                {
+                  name: 'country',
+                  label: 'Country',
+                  placeholder: 'Enter your country',
+                },
+                {
+                  name: 'city',
+                  label: 'City',
+                  placeholder: 'Enter your city',
+                },
+                {
+                  name: 'pos_code',
+                  label: 'Pos Code',
+                  placeholder: 'Enter your pos code',
                 },
               ]}
               onSubmit={(data) => {

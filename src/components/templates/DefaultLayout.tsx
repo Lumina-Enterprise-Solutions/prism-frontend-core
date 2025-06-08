@@ -2,7 +2,7 @@ import { capitalize } from '../atoms/Breadcrumb';
 import { useLocation } from 'react-router-dom';
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '../ui/sidebar';
 import type { PropsWithChildren, ReactNode } from 'react';
-import { AppSidebar } from '../organims/sidebar/app-sidebar';
+import { AppSidebar } from '../organims/sidebar/AppSidebar';
 import { Separator } from '../ui/separator';
 import {
   Breadcrumb,

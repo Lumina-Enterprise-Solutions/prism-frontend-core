@@ -1,12 +1,12 @@
 import './App.css';
 import { AnimatePresence } from 'framer-motion';
-import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { LoginPage } from './pages/Auth/login';
 import { useEffect, useState } from 'react';
-import { LoadingUI } from './components/organims/loading/loading-ui';
-import AuthLayout from './components/templates/auth-layout';
+import { LoadingUI } from './components/organims/loading/LoadingUi';
+import AuthLayout from './components/templates/AuthLayout';
 import { RegisterPage } from './pages/Auth/register';
-import DefaultLayout from './components/templates/default-layout';
+import DefaultLayout from './components/templates/DefaultLayout';
 import Dashboard from './pages/dashboard';
 import i18n from './i18n';
 import { I18nextProvider } from 'react-i18next';

@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { sampleEvents } from '../../../helper/mock/event-calendar-dummy';
-import type { CalendarEvent } from '../../../types/event-calendar-types';
-import { EventCalendar } from '../../molecules/event-calendar';
+import {
+  EventCalendar,
+  type CalendarEvent,
+} from '../../molecules/event-calendar';
 
 export default function EventCalendarTemplate() {
   const [events, setEvents] = useState<CalendarEvent[]>(sampleEvents);

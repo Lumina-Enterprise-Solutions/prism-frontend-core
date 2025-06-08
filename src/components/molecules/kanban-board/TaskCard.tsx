@@ -1,8 +1,6 @@
-import type { UniqueIdentifier } from '@dnd-kit/core';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { cva } from 'class-variance-authority';
-import type { ColumnId } from '.';
 import { Card, CardContent, CardHeader } from '../../atoms/Card';
 import { Badge } from '../../atoms/Badge';
 import { cn } from '../../../utils/utils';
@@ -11,22 +9,28 @@ import { Button } from '../../atoms/Button';
 import { Flag, SquarePen } from 'lucide-react';
 import AvatarGroupMaxAvatar from '../../atoms/AvatarGroup';
 import { Separator } from '../../ui/separator';
+import type { ColumnId } from '.';
+import type { EventColor } from '../../../types/event-calendar-view-types';
+import { getColorClasses } from '../../../helper/getColorClasses';
 
 type AssignedUser = {
-  first_name: string;
-  last_name: string;
+  firstname: string;
+  lastname: string;
   email: string;
   avatarUrl: string;
 };
 
 export type Task = {
   id: string;
-  columnId: string;
+  columnId: ColumnId;
   title: string;
   description: string;
   date?: string;
+  startDate?: string;
+  endDate?: string;
   priority: 'Low' | 'Medium' | 'High';
   assignedTo: AssignedUser[];
+  color?: EventColor;
 };
 
 interface TaskCardProps {
@@ -100,6 +104,7 @@ export const TaskCard = React.memo(function TaskCard({
       {...listeners}
       className={cn(
         'active:cursor-grabbing',
+        getColorClasses(task.color),
         variants({
           dragging: isOverlay ? 'overlay' : isDragging ? 'over' : undefined,
         })
@@ -138,7 +143,7 @@ export const TaskCard = React.memo(function TaskCard({
           <div className="flex items-center space-x-2 px-2">
             <img
               src={task.assignedTo[0].avatarUrl}
-              alt={task.assignedTo[0].first_name}
+              alt={task.assignedTo[0].firstname}
               className="w-6 h-6 rounded-full"
             />
           </div>

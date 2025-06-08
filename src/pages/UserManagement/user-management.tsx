@@ -4,8 +4,8 @@ import {
   createActionsColumn,
   createBadgeColumn,
   createSortableHeader,
-} from '../../components/molecules/advanced-data-table/column';
-import { DataTable } from '../../components/molecules/advanced-data-table/data-table';
+} from '../../components/molecules/advanced-data-table/Column';
+import { DataTable } from '../../components/molecules/advanced-data-table/DataTable';
 import type { UserData } from '../../types/user-data-types';
 import { dummyUsers } from '../../helper/mock/user-dummy';
 import type { Row } from '@tanstack/react-table';

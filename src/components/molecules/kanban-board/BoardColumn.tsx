@@ -3,12 +3,14 @@ import { useDndContext, type UniqueIdentifier } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import { useMemo } from 'react';
 import { cva } from 'class-variance-authority';
-import { CirclePlus, GripVertical } from 'lucide-react';
+import { GripVertical } from 'lucide-react';
 import { TaskCard, type Task } from '.';
 import { Card, CardContent, CardHeader } from '../../atoms/Card';
 import { Button } from '../../atoms/Button';
 import { ScrollArea, ScrollBar } from '../../ui/scroll-area';
 import { Badge } from '../../atoms/Badge';
+import KanbanDialog from './KanbanDialog';
+import { kanbanSchema } from '../../../helper/schema/kanbanSchema';
 
 export interface Column {
   id: UniqueIdentifier;
@@ -26,12 +28,19 @@ interface BoardColumnProps {
   column: Column;
   tasks: Task[];
   isOverlay?: boolean;
+  onAddTask?: (data: any) => void;
 }
 
-export function BoardColumn({ column, tasks, isOverlay }: BoardColumnProps) {
+export function BoardColumn({
+  column,
+  tasks,
+  isOverlay,
+  onAddTask,
+}: BoardColumnProps) {
   const tasksIds = useMemo(() => {
     return tasks.map((task) => task.id);
   }, [tasks]);
+  console.log(tasks);
 
   const columnData = useMemo(
     () => ({
@@ -109,10 +118,24 @@ export function BoardColumn({ column, tasks, isOverlay }: BoardColumnProps) {
                 <TaskCard key={task.id} task={task} />
               ))}
             </SortableContext>
-            <Card className="flex items-center justify-center p-4 font-semibold text-muted-foreground/50 gap-2 border border-dashed border-muted-foreground/50 bg-muted/50 shadow-none">
-              <CirclePlus size={24} />
-              Add new task
-            </Card>
+            {onAddTask && (
+              <KanbanDialog
+                schema={kanbanSchema}
+                fields={[
+                  {
+                    name: 'title',
+                    type: 'text',
+                    label: 'Title',
+                  },
+                  {
+                    name: 'description',
+                    type: 'textarea',
+                    label: 'Description',
+                  },
+                ]}
+                onSubmit={onAddTask}
+              />
+            )}
           </CardContent>
         </ScrollArea>
       </Card>

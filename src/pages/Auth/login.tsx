@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { Building, Building2, Eye, EyeOff, Factory, Undo2 } from 'lucide-react';
-import SkeletonAuth from '../../components/organims/loading/skeleton-auth';
+import SkeletonAuth from '../../components/organims/loading/SkeletonAuth';
 import { Card } from '../../components/atoms/Card';
 import { toast } from 'react-toastify';
 import { useLogin } from '../../features/auth/useAuth';

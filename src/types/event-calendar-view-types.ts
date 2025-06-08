@@ -12,6 +12,7 @@ export interface CalendarEvent {
 }
 
 export type EventColor =
+  | "card"
   | "sky"
   | "amber"
   | "violet"

@@ -1,6 +1,6 @@
 'use client';
 import { Columns } from 'lucide-react';
-import { useDataTable } from './data-table-context';
+import { useDataTable } from './DataTableContext';
 import {
   DropdownMenu,
   DropdownMenuContent,

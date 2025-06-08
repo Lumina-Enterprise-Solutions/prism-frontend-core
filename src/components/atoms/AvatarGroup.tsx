@@ -8,12 +8,14 @@ type AvatarProps = React.ComponentProps<typeof Avatar>;
 interface AvatarGroupProps extends React.ComponentProps<'div'> {
   children: React.ReactElement<AvatarProps>[];
   max?: number;
+  avatarClassName?: string;
 }
 
 const AvatarGroup = ({
   children,
   max,
   className,
+  avatarClassName = 'h-6 w-6',
   ...props
 }: AvatarGroupProps) => {
   const totalAvatars = React.Children.count(children);
@@ -27,8 +29,13 @@ const AvatarGroup = ({
       {...props}
     >
       {remainingAvatars > 0 && (
-        <Avatar className="-ml-2 hover:z-10 relative ring-2 ring-background h-6 w-6">
-          <AvatarFallback className="bg-muted-foreground text-white text-sm">
+        <Avatar
+          className={cn(
+            `-ml-2 hover:z-10 relative ring-2 ring-background`,
+            avatarClassName
+          )}
+        >
+          <AvatarFallback className="bg-gradient-to-r from-primary/70 to-primary text-primary-foreground font-semibold text-xs">
             +{remainingAvatars}
           </AvatarFallback>
         </Avatar>
@@ -49,30 +56,39 @@ const AvatarGroup = ({
 
 interface AvatarGroupMaxAvatarProps {
   avatars: {
-    first_name: string;
-    last_name: string;
+    firstname: string;
+    lastname: string;
     email: string;
     avatarUrl: string;
   }[];
+  avatarClassName?: string;
 }
 
 export default function AvatarGroupMaxAvatar({
   avatars,
+  avatarClassName = 'h-6 w-6',
 }: AvatarGroupMaxAvatarProps) {
   return (
-    <AvatarGroup className="flex items-center" max={3}>
+    <AvatarGroup
+      className="flex items-center"
+      max={3}
+      avatarClassName={avatarClassName}
+    >
       {avatars.map((user, index) => (
-        <Avatar key={index} className="-ml-2 first:ml-0 cursor-pointer h-6 w-6">
+        <Avatar
+          key={index}
+          className={cn('-ml-2 first:ml-0 cursor-pointer', avatarClassName)}
+        >
           <AvatarImage
             src={user.avatarUrl}
-            alt={user.first_name}
+            alt={user.firstname}
             onError={(e) => {
               e.currentTarget.src =
                 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-3.png';
             }}
           />
           <AvatarFallback className="bg-gradient-to-r from-primary/70 to-primary text-primary-foreground font-semibold text-xs">
-            <AvatarUser firstname={user.first_name} lastname={user.last_name} />
+            <AvatarUser firstname={user.firstname} lastname={user.lastname} />
           </AvatarFallback>
         </Avatar>
       ))}

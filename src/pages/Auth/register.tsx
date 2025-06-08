@@ -9,7 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import SkeletonAuth from '../../components/organims/loading/skeleton-auth';
+import SkeletonAuth from '../../components/organims/loading/SkeletonAuth';
 import { Card } from '../../components/atoms/Card';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
