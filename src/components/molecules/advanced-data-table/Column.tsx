@@ -90,6 +90,7 @@ export function createActionsColumn<T>(
     label: string;
     onClick: (data: T) => void;
     icon?: React.ReactNode;
+    popover?: (data: T) => React.ReactNode;
   }>
 ): ColumnDef<T> {
   return {
@@ -109,15 +110,27 @@ export function createActionsColumn<T>(
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            {actions.map((action, index) => (
-              <DropdownMenuItem
-                key={index}
-                onClick={() => action.onClick(data)}
-              >
-                {action.icon && <span className="mr-2">{action.icon}</span>}
-                {action.label}
-              </DropdownMenuItem>
-            ))}
+            {actions.map((action, index) => {
+              const content = (
+                <div className="flex items-center">
+                  {action.icon && <span className="mr-2">{action.icon}</span>}
+                  {action.label}
+                </div>
+              );
+
+              return action.popover ? (
+                <DropdownMenuItem key={index} asChild>
+                  {action.popover(data)}
+                </DropdownMenuItem>
+              ) : (
+                <DropdownMenuItem
+                  key={index}
+                  onClick={() => action.onClick(data)}
+                >
+                  {content}
+                </DropdownMenuItem>
+              );
+            })}
           </DropdownMenuContent>
         </DropdownMenu>
       );

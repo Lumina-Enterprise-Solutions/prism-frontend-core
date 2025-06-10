@@ -137,20 +137,16 @@ export const TaskCard = React.memo(function TaskCard({
         </Badge>
       </div>
       <Separator />
-      <div className="py-2 flex items-center space-x-2">
-        <p className="text-xs font-semibold px-2">Assigned to:</p>
+      <div className="py-2 flex flex-wrap items-center gap-2 text-xs">
+        <p className="font-semibold px-2">Assigned to:</p>
         {task.assignedTo?.length === 1 ? (
-          <div className="flex items-center space-x-2 px-2">
-            <img
-              src={task.assignedTo[0].avatarUrl}
-              alt={task.assignedTo[0].firstname}
-              className="w-6 h-6 rounded-full"
-            />
-          </div>
+          <img
+            src={task.assignedTo[0].avatarUrl}
+            alt={task.assignedTo[0].firstname}
+            className="w-6 h-6 rounded-full"
+          />
         ) : (
-          task.assignedTo?.length && (
-            <AvatarGroupMaxAvatar avatars={task.assignedTo} />
-          )
+          <AvatarGroupMaxAvatar avatars={task.assignedTo} />
         )}
       </div>
     </Card>

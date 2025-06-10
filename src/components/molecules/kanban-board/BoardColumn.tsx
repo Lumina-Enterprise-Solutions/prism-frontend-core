@@ -74,7 +74,7 @@ export function BoardColumn({
   );
 
   const variants = cva(
-    'h-[720px] max-h-[720px] w-[350px] max-w-full bg-card flex flex-col flex-shrink-0 snap-center py-4 shadow-none',
+    'h-[720px] max-h-[720px] min-w-[280px] md:min-w-[320px] lg:min-w-[350px] bg-card flex flex-col flex-shrink-0 snap-center py-4 shadow-none',
     {
       variants: {
         dragging: {
@@ -91,9 +91,11 @@ export function BoardColumn({
       <Card
         ref={setNodeRef}
         style={style}
-        className={variants({
-          dragging: isOverlay ? 'overlay' : isDragging ? 'over' : undefined,
-        })}
+        className={
+          variants({
+            dragging: isOverlay ? 'overlay' : isDragging ? 'over' : undefined,
+          }) + ' w-[90vw] sm:w-[350px] h-[80vh] max-h-[80vh]'
+        }
       >
         <CardHeader className="p-4 font-semibold text-left flex flex-row space-between items-center">
           <span className="mr-auto flex flex-row gap-2">
@@ -146,7 +148,7 @@ export function BoardColumn({
 export function BoardContainer({ children }: { children: React.ReactNode }) {
   const dndContext = useDndContext();
 
-  const variations = cva('px-2 md:px-0 flex lg:justify-center pb-4', {
+  const variations = cva('w-full overflow-x-auto pb-4', {
     variants: {
       dragging: {
         default: 'snap-x snap-mandatory',
@@ -157,13 +159,13 @@ export function BoardContainer({ children }: { children: React.ReactNode }) {
 
   return (
     <ScrollArea
-      className={variations({
-        dragging: dndContext.active ? 'active' : 'default',
-      })}
+      className={
+        variations({
+          dragging: dndContext.active ? 'active' : 'default',
+        }) + ' overflow-x-auto max-w-full'
+      }
     >
-      <div className="flex gap-4 items-center flex-row justify-center">
-        {children}
-      </div>
+      <div className="flex gap-4 items-start w-max">{children}</div>
       <ScrollBar orientation="horizontal" />
     </ScrollArea>
   );

@@ -1,4 +1,4 @@
-import { Edit, Eye, Trash } from 'lucide-react';
+import { Edit, Eye, Trash, UserCogIcon } from 'lucide-react';
 import { Card, CardContent } from '../../components/atoms/Card';
 import {
   createActionsColumn,
@@ -12,6 +12,7 @@ import type { Row } from '@tanstack/react-table';
 import { AvatarUser } from '../../components/atoms/Avatar';
 import { useTitle } from '../../hooks/services/use-title';
 import { useMemo } from 'react';
+import DialogRole from '../../components/molecules/advanced-dialog/DialogRole';
 // import { useUsers } from '../hooks/services/use-users';
 
 export default function UserManagementPage() {
@@ -69,6 +70,12 @@ export default function UserManagementPage() {
           label: 'View Details',
           onClick: (data) => console.log('View', data),
           icon: <Eye className="h-4 w-4" />,
+        },
+        {
+          label: 'Role',
+          onClick: (data) => console.log('Role', data),
+          icon: <UserCogIcon className="h-4 w-4" />,
+          popover: (data) => <DialogRole />,
         },
         {
           label: 'Edit',

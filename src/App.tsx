@@ -63,8 +63,8 @@ function App() {
             {/* Protected Routes */}
             <Route element={<DefaultLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/user-management" element={<UserManagementPage />} />
               <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/user-management" element={<UserManagementPage />} />
               {/* <Route
               path="/dashboard"
               element={

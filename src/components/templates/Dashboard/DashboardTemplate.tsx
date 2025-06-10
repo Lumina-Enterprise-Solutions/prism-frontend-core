@@ -91,108 +91,37 @@ export default function DashboardTemplate() {
   };
   return (
     <>
-      <div className="p-10 flex items-center justify-center tour-product-overview gap-6">
-        <Card className="px-10 py-6 flex flex-row items-center gap-4 shadow-sm hover:bg-muted/10">
-          <div className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
-            <div className="flex h-full w-full items-center justify-center rounded-full bg-muted shadow-2xl text-muted-foreground">
+      <div className="p-4 md:p-10 flex flex-wrap justify-center gap-4 tour-product-overview">
+        {[...Array(5)].map((_, idx) => (
+          <Card
+            key={idx}
+            className="w-full sm:w-[300px] px-6 py-4 flex items-center gap-4 shadow-sm hover:bg-muted/10"
+          >
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted shadow-2xl text-muted-foreground">
               <Activity className="w-4 h-4" />
             </div>
-          </div>
-          <div className="flex flex-col">
-            <h1 className="text-foreground text-md font-semibold">
-              Product overview
-            </h1>
-            <div className="flex flex-row items-center">
-              <p className="text-muted-foreground text-sm">25 products</p>
-              <div className="flex flex-row text-growth-green ml-2 gap-1">
-                <p className="text-xs">28+</p>
-                <TrendingUp className="w-3 h-3" />
+            <div className="flex flex-col">
+              <h1 className="text-md font-semibold text-foreground">
+                Product overview
+              </h1>
+              <div className="flex items-center">
+                <p className="text-sm text-muted-foreground">25 products</p>
+                <div className="flex items-center text-growth-green ml-2 gap-1">
+                  <p className="text-xs">28+</p>
+                  <TrendingUp className="w-3 h-3" />
+                </div>
               </div>
             </div>
-          </div>
-        </Card>
-        <Card className="px-10 py-6 flex flex-row items-center gap-4 shadow-sm hover:bg-muted/10">
-          <div className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
-            <div className="flex h-full w-full items-center justify-center rounded-full bg-muted shadow-2xl text-muted-foreground">
-              <Activity className="w-4 h-4" />
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <h1 className="text-foreground text-md font-semibold">
-              Product overview
-            </h1>
-            <div className="flex flex-row items-center">
-              <p className="text-muted-foreground text-sm">25 products</p>
-              <div className="flex flex-row text-growth-green ml-2 gap-1">
-                <p className="text-xs">28+</p>
-                <TrendingUp className="w-3 h-3" />
-              </div>
-            </div>
-          </div>
-        </Card>
-        <Card className="px-10 py-6 flex flex-row items-center gap-4 shadow-sm hover:bg-muted/10">
-          <div className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
-            <div className="flex h-full w-full items-center justify-center rounded-full bg-muted shadow-2xl text-muted-foreground">
-              <Activity className="w-4 h-4" />
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <h1 className="text-foreground text-md font-semibold">
-              Product overview
-            </h1>
-            <div className="flex flex-row items-center">
-              <p className="text-muted-foreground text-sm">25 products</p>
-              <div className="flex flex-row text-growth-green ml-2 gap-1">
-                <p className="text-xs">28+</p>
-                <TrendingUp className="w-3 h-3" />
-              </div>
-            </div>
-          </div>
-        </Card>
-        <Card className="px-10 py-6 flex flex-row items-center gap-4 shadow-sm hover:bg-muted/10">
-          <div className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
-            <div className="flex h-full w-full items-center justify-center rounded-full bg-muted shadow-2xl text-muted-foreground">
-              <Activity className="w-4 h-4" />
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <h1 className="text-foreground text-md font-semibold">
-              Product overview
-            </h1>
-            <div className="flex flex-row items-center">
-              <p className="text-muted-foreground text-sm">25 products</p>
-              <div className="flex flex-row text-growth-green ml-2 gap-1">
-                <p className="text-xs">28+</p>
-                <TrendingUp className="w-3 h-3" />
-              </div>
-            </div>
-          </div>
-        </Card>
-        <Card className="px-10 py-6 flex flex-row items-center gap-4 shadow-sm hover:bg-muted/10">
-          <div className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
-            <div className="flex h-full w-full items-center justify-center rounded-full bg-muted shadow-2xl text-muted-foreground">
-              <Activity className="w-4 h-4" />
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <h1 className="text-foreground text-md font-semibold">
-              Product overview
-            </h1>
-            <div className="flex flex-row items-center">
-              <p className="text-muted-foreground text-sm">25 products</p>
-              <div className="flex flex-row text-growth-green ml-2 gap-1">
-                <p className="text-xs">28+</p>
-                <TrendingUp className="w-3 h-3" />
-              </div>
-            </div>
-          </div>
-        </Card>
+          </Card>
+        ))}
       </div>
-      <div className="tour-chart">
+      <div className="p-4 md:p-10 tour-chart">
         <ChartAreaInteractive />
       </div>
-      <CardContent className="px-10 pt-4 space-y-2">
-        <h1 className="text-foreground text-3xl font-semibold tour-welcome">
+
+      {/* Table */}
+      <CardContent className="px-4 md:px-10 pt-4 space-y-2">
+        <h1 className="text-3xl font-semibold text-foreground tour-welcome">
           Table Product
         </h1>
         <DataTableCustoms
