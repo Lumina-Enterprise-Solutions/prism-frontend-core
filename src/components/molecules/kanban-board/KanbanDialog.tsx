@@ -91,14 +91,14 @@ export default function KanbanDialog<T extends ZodType<any, any, any>>({
   return (
     <Dialog>
       <DialogTrigger asChild className="hover:bg-muted/60">
-        <Button className="flex items-center justify-center p-4 font-semibold text-muted-foreground/50 gap-2 border border-dashed border-muted-foreground/50 bg-muted/50 shadow-none">
+        <Button className="flex items-center justify-center p-4 font-semibold text-foreground gap-2 border border-dashed border-muted-foreground/50 bg-muted/50 dark:bg-muted/10 hover:bg-muted/30 hover:dark:bg-muted/20 shadow-none">
           <CirclePlus className="h-4 w-4" />
           Add new task
         </Button>
       </DialogTrigger>
       <DialogContent className="data-[state=open]:!zoom-in-0 data-[state=open]:duration-600 sm:max-w-[425px] h-auto min-w-[calc(70vw-2rem)] overflow-y-auto">
         <form onSubmit={handleSubmit(handleFormSubmit)}>
-          <DialogHeader className="text-xl font-semibold">
+          <DialogHeader className="text-xl font-semibold text-foreground">
             Create new task
           </DialogHeader>
           <div className="grid grid-cols-2  gap-4 p-4">
@@ -110,7 +110,7 @@ export default function KanbanDialog<T extends ZodType<any, any, any>>({
                   <div key={field.name} className="grid gap-3">
                     <Label
                       htmlFor={field.name}
-                      className="text-sm font-semibold text-muted-foreground"
+                      className="text-sm font-semibold text-foreground"
                     >
                       {field.label}
                     </Label>
@@ -142,7 +142,7 @@ export default function KanbanDialog<T extends ZodType<any, any, any>>({
             </div>
             <div className="grid gap-3 py-4">
               <div className="flex flex-col gap-3">
-                <h1 className="text-sm font-semibold text-muted-foreground">
+                <h1 className="text-sm font-semibold text-foreground">
                   Assignee & Communication
                 </h1>
                 <div className="flex items-center space-x-2 px-2">
@@ -153,7 +153,7 @@ export default function KanbanDialog<T extends ZodType<any, any, any>>({
                   <DialogInviteUser onSelectUser={handleSelectUser} />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <h1 className="text-sm font-semibold text-muted-foreground">
+                  <h1 className="text-sm font-semibold text-foreground">
                     Priority
                   </h1>
                   <ReusableRadioGroup
@@ -173,7 +173,7 @@ export default function KanbanDialog<T extends ZodType<any, any, any>>({
                 </div>
                 <div className="flex flex-row justify-between gap-2">
                   <div className="w-full">
-                    <Label className="text-sm font-semibold text-muted-foreground">
+                    <Label className="text-sm font-semibold text-foreground">
                       Start Date
                     </Label>
                     <Popover
@@ -184,14 +184,14 @@ export default function KanbanDialog<T extends ZodType<any, any, any>>({
                         <Button
                           variant="outline"
                           className={cn(
-                            'group bg-background hover:bg-background border-input w-full justify-between px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px]',
-                            !startDate && 'text-muted-foreground'
+                            'group bg-background hover:bg-background text-foreground border-input w-full justify-between px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px]',
+                            !startDate && 'text-foreground'
                           )}
                         >
                           <span
                             className={cn(
                               'truncate',
-                              !startDate && 'text-muted-foreground'
+                              !startDate && 'text-foreground'
                             )}
                           >
                             {startDate
@@ -200,7 +200,7 @@ export default function KanbanDialog<T extends ZodType<any, any, any>>({
                           </span>
                           <RiCalendarLine
                             size={16}
-                            className="text-muted-foreground/80 shrink-0"
+                            className="text-foreground shrink-0"
                             aria-hidden="true"
                           />
                         </Button>
@@ -224,7 +224,7 @@ export default function KanbanDialog<T extends ZodType<any, any, any>>({
                     </Popover>
                   </div>
                   <div className="w-full">
-                    <Label className="text-sm font-semibold text-muted-foreground">
+                    <Label className="text-sm font-semibold text-foreground">
                       End Date
                     </Label>
                     <Popover open={endDateOpen} onOpenChange={setEndDateOpen}>
@@ -233,21 +233,21 @@ export default function KanbanDialog<T extends ZodType<any, any, any>>({
                           id="end-date"
                           variant={'outline'}
                           className={cn(
-                            'group bg-background hover:bg-background border-input w-full justify-between px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px]',
-                            !endDate && 'text-muted-foreground'
+                            'group bg-background hover:bg-background text-foreground border-input w-full justify-between px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px]',
+                            !endDate && 'text-foreground'
                           )}
                         >
                           <span
                             className={cn(
                               'truncate',
-                              !endDate && 'text-muted-foreground'
+                              !endDate && 'text-foreground'
                             )}
                           >
                             {endDate ? format(endDate, 'PPP') : 'Pick a date'}
                           </span>
                           <RiCalendarLine
                             size={16}
-                            className="text-muted-foreground/80 shrink-0"
+                            className="text-foreground shrink-0"
                             aria-hidden="true"
                           />
                         </Button>

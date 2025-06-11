@@ -21,7 +21,7 @@ export default function ProfilePage() {
         <div className="flex justify-between">
           <div className="py-4 gap-1">
             <h1 className="text-foreground text-2xl font-semibold tour-welcome">
-              Profile Information
+              {t('profile.header', 'Profile Information')}
             </h1>
           </div>
           <div className="py-4 gap-1">
@@ -107,7 +107,7 @@ export default function ProfilePage() {
         <Separator className="px-2" />
         <div className="py-4">
           <h1 className="text-foreground text-xl font-semibold tour-welcome">
-            Profile Detail
+            {t('profile.title', 'Profile Detail')}
           </h1>
         </div>
         <div className="grid grid-cols-2 gap-4 py-4">
@@ -194,7 +194,7 @@ export default function ProfilePage() {
 
         <div className="py-4">
           <h1 className="text-foreground text-xl font-semibold tour-welcome">
-            Address
+            {t('profile.subtitle', 'Address')}
           </h1>
         </div>
         <div className="grid grid-cols-2 gap-4 py-4">

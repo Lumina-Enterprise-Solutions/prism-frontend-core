@@ -1,7 +1,13 @@
 {
+  "dashboard": {
+    "title": "Detail Pengguna",
+    "product": "Ringkasan Produk",
+    "header": "Halo",
+    "subHeader": "Lacak bisnis Anda dan kinerja strategi Anda"
+  },
   "forgot_password": {
     "title": "Lupa Kata Sandi",
-    "subtitle": "Masukkan alamat email yang terdaftar pada akun Anda"
+    "subtitle": "Masukkan alamat email yang terdaftar di akun Anda"
   },
   "form": {
     "email": "Email",
@@ -9,13 +15,13 @@
     "forgot_password": "Lupa kata sandi?",
     "firstName": "Nama Depan",
     "lastName": "Nama Belakang",
-    "emailPlaceholder": "m@example.com",
+    "emailPlaceholder": "m@contoh.com",
     "passwordPlaceholder": "********",
     "resetToken": "Token"
   },
   "login": {
     "title": "Masuk ke akun Anda",
-    "subtitle": "Masukkan email Anda untuk masuk ke akun"
+    "subtitle": "Masukkan email Anda di bawah ini untuk masuk ke akun Anda"
   },
   "register": {
     "title": "Buat akun",
@@ -23,6 +29,26 @@
   },
   "reset_password": {
     "title": "Atur Ulang Kata Sandi",
-    "subtitle": "Kata sandi baru harus berbeda dari kata sandi sebelumnya."
+    "subtitle": "Kata sandi ini harus berbeda dari kata sandi sebelumnya."
+  },
+  "profile": {
+    "header": "Informasi Profil",
+    "title": "Detail Profil",
+    "first_name": "Nama Depan",
+    "firstNamePlaceholder": "Nama Depan",
+    "last_name": "Nama Belakang",
+    "lastNamePlaceholder": "Nama Belakang",
+    "email": "Alamat Email",
+    "emailPlaceholder": "m@contoh.com",
+    "phone": "Nomor Telepon",
+    "phoneNumberPlaceholder": "+62",
+    "date": "Tanggal Lahir",
+    "datePlaceholder": "01-01-2000",
+    "description": "Deskripsi",
+    "country": "Negara",
+    "countryPlaceholder": "-",
+    "city": "Kota/Provinsi",
+    "pos_code": "Kode Pos",
+    "subtitle": "Alamat"
   }
 }

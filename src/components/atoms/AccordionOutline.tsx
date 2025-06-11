@@ -23,7 +23,7 @@ export default function AccordionOutline() {
           value={`group-${index + 1}`}
           className="rounded-md border! border-muted-foreground/30"
         >
-          <AccordionTrigger className="px-5 font-semibold">
+          <AccordionTrigger className="px-5 font-semibold text-foreground">
             {group.title}
           </AccordionTrigger>
           <AccordionContent className="text-muted-foreground px-5 space-y-2 ">

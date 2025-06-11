@@ -1,4 +1,10 @@
 {
+  "dashboard": {
+    "title": "User Details",
+    "product": "Product overview",
+    "header": "Hello",
+    "subHeader": "Track your business and performance of your strategy"
+  },
   "forgot_password": {
     "title": "Forgot Password",
     "subtitle": "Enter the email address with your account"
@@ -24,5 +30,25 @@
   "reset_password": {
     "title": "Reset Password",
     "subtitle": "This password should be different from the previous password."
+  },
+  "profile": {
+    "header": "Profile Information",
+    "title": "Profile Detail",
+    "first_name": "First Name",
+    "firstNamePlaceholder": "First Name",
+    "last_name": "Last Name",
+    "lastNamePlaceholder": "Last Name",
+    "email": "Email Address",
+    "emailPlaceholder": "m@example.com",
+    "phone": "Phone Number",
+    "phoneNumberPlaceholder": "+62",
+    "date": "Date of Birth",
+    "datePlaceholder": "01-01-2000",
+    "description": "Description",
+    "subtitle": "Address",
+    "country": "Country",
+    "countryPlaceholder": "-",
+    "city": "City/State",
+    "pos_code": "Pos Code"
   }
 }

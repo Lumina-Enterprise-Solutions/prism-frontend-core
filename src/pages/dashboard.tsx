@@ -8,10 +8,12 @@ import { tabs } from '../helper/mock/tab-dashboard';
 import DashboardTemplate from '../components/templates/Dashboard/DashboardTemplate';
 import EventCalendarTemplate from '../components/templates/Dashboard/EventCalendarTemplate';
 import { KanbanBoard } from '../components/templates/Dashboard/KanbanBoardTemplate';
+import { useTranslation } from 'react-i18next';
 
 export default function Dashboard() {
   const { setIsOpen } = useTour();
   useTitle('Dashboard - Prism');
+  const { t } = useTranslation();
 
   useEffect(() => {
     const hasSeenDashboardTour = localStorage.getItem('hasSeenDashboardTour');
@@ -29,10 +31,14 @@ export default function Dashboard() {
             {/* Left Section - Greeting */}
             <div className="px-4 md:px-10 py-4 gap-1">
               <h1 className="text-foreground text-2xl md:text-3xl font-semibold tour-welcome">
-                Hello, <span className="font-normal">John Doe</span>
+                {t('dashboard.header', 'Hello')},{' '}
+                <span className="font-normal">John Doe</span>
               </h1>
               <p className="text-muted-foreground text-sm font-light">
-                Track your business and performance of your strategy
+                {t(
+                  'dashboard.subHeader',
+                  'Track your business and performance of your strategy'
+                )}
               </p>
             </div>
 

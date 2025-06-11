@@ -15,6 +15,7 @@ import {
 import { Outlet } from 'react-router-dom';
 import { DarkModeToggle } from '../atoms/DarkModeToggle';
 import React from 'react';
+import { LanguangeToggle } from '../atoms/LanguangeToggle';
 
 export default function DefaultLayout({
   header,
@@ -58,7 +59,8 @@ export default function DefaultLayout({
               </Breadcrumb>
             </div>
 
-            <div>
+            <div className="gap-2 flex items-center">
+              <LanguangeToggle />
               <DarkModeToggle />
             </div>
           </div>

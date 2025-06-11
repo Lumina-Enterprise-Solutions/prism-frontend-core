@@ -29,12 +29,7 @@ const AvatarGroup = ({
       {...props}
     >
       {remainingAvatars > 0 && (
-        <Avatar
-          className={cn(
-            `-ml-2 hover:z-10 relative ring-2 ring-background`,
-            avatarClassName
-          )}
-        >
+        <Avatar className={cn(`-ml-2 hover:z-10 relative`, avatarClassName)}>
           <AvatarFallback className="bg-gradient-to-r from-primary/70 to-primary text-primary-foreground font-semibold text-xs">
             +{remainingAvatars}
           </AvatarFallback>
@@ -45,7 +40,7 @@ const AvatarGroup = ({
         return (
           <div key={index} className="-ml-2 hover:z-10 relative">
             {React.cloneElement(avatar, {
-              className: cn(avatar.props.className, 'ring-2 ring-background'),
+              className: cn(avatar.props.className),
             })}
           </div>
         );

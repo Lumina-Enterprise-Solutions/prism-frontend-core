@@ -22,7 +22,7 @@ const DialogInviteUser = ({ onSelectUser }: DialogInviteUserProps) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline">
+        <Button variant="outline" className="text-foreground">
           <PlusIcon size={16} />
           Invite
         </Button>

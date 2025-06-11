@@ -11,9 +11,11 @@ import {
   createSortableHeader,
 } from '../../molecules/advanced-data-table/Column';
 import type { Row } from '@tanstack/react-table';
+import { useTranslation } from 'react-i18next';
 
 export default function DashboardTemplate() {
   const products = dummyProduct;
+  const { t } = useTranslation();
 
   const columns = useMemo(
     () => [
@@ -64,7 +66,8 @@ export default function DashboardTemplate() {
     return (
       <div className="p-4">
         <h3 className="text-lg font-medium mb-2">
-          User Details: {user.firstname} {user.lastname}
+          {t('dashboard.title', 'User Details')}
+          {user.firstname} {user.lastname}
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-1">
@@ -76,7 +79,7 @@ export default function DashboardTemplate() {
             <div className="capitalize">{user.role}</div>
           </div>
           <div className="space-y-1">
-            <div className="text-sm text-muted-foreground">Tanggal Dibuat</div>
+            <div className="text-sm text-muted-foreground">Create Date</div>
             <div>
               {new Date(user.created_at).toLocaleDateString('id-ID', {
                 day: '2-digit',
@@ -102,7 +105,7 @@ export default function DashboardTemplate() {
             </div>
             <div className="flex flex-col">
               <h1 className="text-md font-semibold text-foreground">
-                Product overview
+                {t('dashboard.product', 'Product overview')}
               </h1>
               <div className="flex items-center">
                 <p className="text-sm text-muted-foreground">25 products</p>

@@ -29,7 +29,7 @@ export default function DialogRole() {
         </div>
       </DialogTrigger>
       <DialogContent className="data-[state=open]:!zoom-in-0 data-[state=open]:duration-600 sm:max-w-[425px] h-auto min-w-[calc(70vw-2rem)] overflow-y-auto">
-        <DialogTitle className="flex items-center gap-4">
+        <DialogTitle className="flex items-center gap-4 text-foreground">
           <UserCogIcon size={36} />
           <div className="gap-2">
             <h1 className="text-xl font-semibold">Manage Permission</h1>
