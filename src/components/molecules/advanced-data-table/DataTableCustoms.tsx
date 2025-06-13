@@ -290,7 +290,7 @@ export function DataTableCustoms<TData, TValue>({
                       <TableHead
                         key={header.id}
                         className={cn(
-                          'whitespace-nowrap font-medium text-muted-foreground',
+                          'whitespace-nowrap text-foreground font-semibold',
                           variant === 'minimal'
                             ? 'bg-transparent'
                             : 'bg-muted/30'

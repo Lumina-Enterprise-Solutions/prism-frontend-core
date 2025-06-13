@@ -23,5 +23,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "test", "src/custom.d.ts"]
+  "include": ["src", "test", "src/custom.d.ts", "src/jspdf-autotable.d.ts"]
 }

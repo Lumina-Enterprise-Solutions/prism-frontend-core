@@ -42,6 +42,7 @@ export default function ReusableRadioGroup({
               value={option.value}
               id={option.value}
               {...(register ? register(name) : {})}
+              className="font-normal"
             />
             <Label htmlFor={option.value}>{option.label}</Label>
           </div>

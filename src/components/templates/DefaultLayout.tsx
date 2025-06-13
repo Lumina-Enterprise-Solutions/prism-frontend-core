@@ -16,6 +16,28 @@ import { Outlet } from 'react-router-dom';
 import { DarkModeToggle } from '../atoms/DarkModeToggle';
 import React from 'react';
 import { LanguangeToggle } from '../atoms/LanguangeToggle';
+import { TeamSwitcher } from '../organims/sidebar/TeamSwitcher';
+import { AudioWaveform, Command, GalleryVerticalEnd } from 'lucide-react';
+
+const data = {
+  teams: [
+    {
+      name: 'Acme Inc',
+      logo: GalleryVerticalEnd,
+      plan: 'Enterprise',
+    },
+    {
+      name: 'Acme Corp.',
+      logo: AudioWaveform,
+      plan: 'Startup',
+    },
+    {
+      name: 'Evil Corp.',
+      logo: Command,
+      plan: 'Free',
+    },
+  ],
+};
 
 export default function DefaultLayout({
   header,
@@ -60,8 +82,11 @@ export default function DefaultLayout({
             </div>
 
             <div className="gap-2 flex items-center">
-              <LanguangeToggle />
-              <DarkModeToggle />
+              <div className="gap-2 flex items-center">
+                <LanguangeToggle />
+                <DarkModeToggle />
+              </div>
+              <TeamSwitcher teams={data.teams} />
             </div>
           </div>
         </header>

@@ -177,7 +177,7 @@ export function MonthView({
                                 isFirstDay={isFirstDay}
                                 isLastDay={isLastDay}
                               >
-                                <div className="invisible" aria-hidden={true}>
+                                <div aria-hidden={true}>
                                   {!event.allDay && (
                                     <span>
                                       {format(new Date(event.start), 'h:mm')}{' '}

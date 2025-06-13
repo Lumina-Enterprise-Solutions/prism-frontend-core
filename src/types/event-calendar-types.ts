@@ -4,11 +4,13 @@ export interface CalendarEvent {
   id: string
   title: string
   description?: string
-  start: Date
-  end: Date
+  priority?: 'critical' | 'low' | 'medium' | 'high' | 'info';
+  start: string | Date;
+  end: string | Date;
   allDay?: boolean
   color?: EventColor
   location?: string
+  done?: boolean;
 }
 
 export type EventColor =

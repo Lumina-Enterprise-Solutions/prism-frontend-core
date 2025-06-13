@@ -44,12 +44,12 @@ export default function Dashboard() {
 
             {/* Right Section - Tabs */}
             <div className="px-4 md:px-10 pt-2 md:pt-4 gap-1">
-              <TabsList className="w-full flex flex-wrap md:flex-nowrap overflow-x-auto md:overflow-visible p-0 bg-muted/10 justify-start rounded-none">
+              <TabsList className="w-full flex flex-wrap md:flex-nowrap overflow-x-auto md:overflow-visible p-0 justify-start rounded-none">
                 {tabs.map((tab) => (
                   <TabsTrigger
                     key={tab.value}
                     value={tab.value}
-                    className="rounded-md bg-muted/20 h-full data-[state=active]:shadow-none border-b-2 border-muted/10 data-[state=active]:border-muted-foreground/50 data-[state=active]:bg-muted-10 data-[state=active]:font-semibold text-sm px-3 py-1 whitespace-nowrap"
+                    className="rounded-md bg-card h-full data-[state=active]:shadow-none data-[state=active]:border-primary data-[state=active]:bg-card data-[state=active]:font-semibold text-sm px-3 py-1 whitespace-nowrap"
                   >
                     {tab.name}
                   </TabsTrigger>

@@ -37,7 +37,7 @@ export function DataTableFilters() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="h-8 text-xs border-dashed border-muted-foreground/20"
+                      className="h-8 text-xs shadow-none border-muted-foreground/10"
                     >
                       {columnName}
                       {column.getFilterValue() ? (

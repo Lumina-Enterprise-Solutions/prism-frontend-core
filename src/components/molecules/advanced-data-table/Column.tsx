@@ -40,7 +40,7 @@ export function createSortableHeader<T>(
     return (
       <Button
         variant="ghost"
-        className="-ml-4 h-8 data-[state=open]:bg-accent"
+        className="-ml-4 h-8 data-[state=open]:bg-muted hover:bg-muted-foreground/5 hover:text-foreground font-semibold text-foreground"
         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
       >
         {label}

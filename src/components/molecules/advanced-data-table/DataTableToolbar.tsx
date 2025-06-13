@@ -47,7 +47,7 @@ export function DataTableToolbar() {
               placeholder="Search all columns..."
               value={globalFilter ?? ''}
               onChange={(e) => setGlobalFilter(e.target.value)}
-              className="pl-9 h-9 w-full bg-background border-muted-foreground/20"
+              className="pl-9 h-9 w-full border border-muted-foreground/30 bg-background shadow-none focus:border-muted-foreground/10 focus:outline-none transition-all duration-200"
             />
             {globalFilter && (
               <Button
@@ -73,7 +73,7 @@ export function DataTableToolbar() {
                 onChange={(event) =>
                   table.getColumn(searchKey)?.setFilterValue(event.target.value)
                 }
-                className="pl-9 h-9 w-full bg-background border-muted-foreground/20"
+                className="pl-9 h-9 w-full border border-muted-foreground/30 bg-background shadow-none focus:border-muted-foreground/10 focus:outline-none transition-all duration-200"
               />
               {(table.getColumn(searchKey)?.getFilterValue() as string) && (
                 <Button
@@ -94,7 +94,7 @@ export function DataTableToolbar() {
               variant={showFilters ? 'default' : 'outline'}
               size="sm"
               onClick={() => setShowFilters(!showFilters)}
-              className="h-9 gap-1.5 text-xs"
+              className="h-9 gap-1.5 text-xs shadow-none hover:shadow-none"
             >
               <Filter className="h-3.5 w-3.5" />
               Filters
@@ -128,7 +128,7 @@ export function DataTableToolbar() {
                   variant="ghost"
                   size="icon"
                   onClick={resetAll}
-                  className="h-9 w-9 text-muted-foreground hover:text-foreground"
+                  className="h-9 w-9 border border-muted-foreground/30 shadow-none focus:border-muted-foreground/10 focus:outline-none transition-all duration-200"
                   disabled={
                     columnFilters.length === 0 &&
                     sorting.length === 0 &&
@@ -176,7 +176,7 @@ function DataTableActiveFilters() {
             <Button
               variant="ghost"
               size="icon"
-              className="h-4 w-4 ml-1 p-0 text-muted-foreground hover:text-foreground"
+              className="pl-9 h-9 w-full border border-muted-foreground/30 bg-background shadow-none focus:border-muted-foreground/10 focus:outline-none transition-all duration-200"
               onClick={() => {
                 column?.setFilterValue(undefined);
               }}

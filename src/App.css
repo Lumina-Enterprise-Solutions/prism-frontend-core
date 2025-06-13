@@ -62,7 +62,7 @@
 }
 
 :root {
-  --background: #f5f7f8;
+  --background: #f3f3f3;
   --foreground: #182C3D;
   --card: #fdfdfd;
   --card-foreground: #eef4fa;
@@ -94,14 +94,14 @@
   --chart-3: #77b8a4;
   --chart-4: #f0cd8d;
   --chart-5: #a0b8e3;
-  --sidebar: #f5f7f8;
+  --sidebar: #fdfdfd;
   --sidebar-foreground: #072641;
   --sidebar-primary: #072641;
   --sidebar-primary-foreground: #f8f7fa;
   --sidebar-accent: #004480;
   --sidebar-accent-foreground: #f8f7fa;
-  --sidebar-border: #c7c7c7;
-  --sidebar-ring: #f5f7f8;
+  --sidebar-border: #e7e7e7;
+  --sidebar-ring: #f1f1f1;
   --font-sans: Geist, sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Geist Mono, monospace;
@@ -160,7 +160,7 @@
   --sidebar-primary-foreground: #031e35;
   --sidebar-accent: #01335f;
   --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #333333;
+  --sidebar-border: #012849;
   --sidebar-ring: #a4a4a4;
   --font-sans: Geist, sans-serif;
   --font-serif: Georgia, serif;

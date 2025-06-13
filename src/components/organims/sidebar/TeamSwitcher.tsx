@@ -37,9 +37,9 @@ export function TeamSwitcher({
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-foreground"
+              className="data-[state=open]:text-foreground text-foreground hover:text-foreground hover:bg-muted/30"
             >
-              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+              <div className="flex aspect-square size-8 items-center justify-center rounded-lg border-none bg-card shadow-sm hover:bg-muted/30 duration-200 hover:shadow-md">
                 <activeTeam.logo className="size-4" />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
@@ -50,7 +50,7 @@ export function TeamSwitcher({
                   {activeTeam.plan}
                 </span>
               </div>
-              <ChevronsUpDown className="ml-auto" />
+              {/* <ChevronsUpDown className="h-4 w-4" /> */}
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -66,9 +66,9 @@ export function TeamSwitcher({
               <DropdownMenuItem
                 key={team.name}
                 onClick={() => setActiveTeam(team)}
-                className="gap-2 p-2"
+                className="gap-2 p-2 hover:bg-muted focus:bg-muted focus:text-foreground"
               >
-                <div className="flex size-6 items-center justify-center rounded-sm border">
+                <div className="flex size-6 items-center justify-center rounded-sm">
                   <team.logo className="size-4 shrink-0" />
                 </div>
                 {team.name}

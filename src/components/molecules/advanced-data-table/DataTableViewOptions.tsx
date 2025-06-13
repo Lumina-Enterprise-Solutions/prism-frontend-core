@@ -19,7 +19,11 @@ export function DataTableViewOptions() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="h-9 gap-1.5 text-xs">
+        <Button
+          variant="outline"
+          size="sm"
+          className="h-9 gap-1.5 text-xs border border-muted-foreground/30 shadow-none focus:border-muted-foreground/10 focus:outline-none transition-all duration-200 hover:shadow-none"
+        >
           <Columns className="h-3.5 w-3.5" />
           Columns
           <Badge variant="outline" className="ml-1 px-1 font-normal">

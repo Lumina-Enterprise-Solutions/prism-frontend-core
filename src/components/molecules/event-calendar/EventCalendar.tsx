@@ -408,6 +408,7 @@ export function EventCalendar({
           onSave={handleEventSave}
           onDelete={handleEventDelete}
         />
+        
       </CalendarDndProvider>
     </div>
   );

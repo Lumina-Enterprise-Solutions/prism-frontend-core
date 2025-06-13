@@ -48,7 +48,11 @@ export function DataTableSavedViews() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="h-9 gap-1.5 text-xs">
+        <Button
+          variant="outline"
+          size="sm"
+          className="h-9 gap-1.5 text-xs border border-muted-foreground/30 shadow-none focus:border-muted-foreground/10 focus:outline-none transition-all duration-200 hover:shadow-none"
+        >
           <FolderOpen className="h-3.5 w-3.5" />
           {activeView
             ? savedViews?.find((v) => v.id === activeView)?.name ||
@@ -58,7 +62,7 @@ export function DataTableSavedViews() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[220px]">
-        <DropdownMenuLabel>Saved Views</DropdownMenuLabel>
+        <DropdownMenuLabel className="">Saved Views</DropdownMenuLabel>
         <DropdownMenuSeparator />
 
         {(savedViews?.length ?? 0) > 0 ? (

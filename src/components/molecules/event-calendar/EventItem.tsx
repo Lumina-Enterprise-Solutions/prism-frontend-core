@@ -4,7 +4,12 @@ import { useMemo } from 'react';
 import type { DraggableAttributes } from '@dnd-kit/core';
 import type { SyntheticListenerMap } from '@dnd-kit/core/dist/hooks/utilities';
 import { differenceInMinutes, format, getMinutes, isPast } from 'date-fns';
-import { cn, getBorderRadiusClasses, getEventColorClasses, type CalendarEvent } from '.';
+import {
+  cn,
+  getBorderRadiusClasses,
+  getEventColorClasses,
+  type CalendarEvent,
+} from '.';
 
 // Using date-fns format with custom formatting:
 // 'h' - hours (1-12)
@@ -53,10 +58,12 @@ function EventWrapper({
     : new Date(event.end);
 
   const isEventInPast = isPast(displayEnd);
+  const isOverdue = isEventInPast && !event.done;
 
   return (
     <button
       className={cn(
+        isOverdue && 'animate-pulse bg-destructive/20',
         'focus-visible:border-ring focus-visible:ring-ring/50 flex h-full w-full overflow-hidden px-1 text-left font-medium backdrop-blur-md transition outline-none select-none focus-visible:ring-[3px] data-dragging:cursor-grabbing data-dragging:shadow-lg data-past-event:line-through sm:px-2',
         getEventColorClasses(event.color),
         getBorderRadiusClasses(isFirstDay, isLastDay),
@@ -143,7 +150,26 @@ export function EventItem({
     )} - ${formatTimeWithOptionalMinutes(displayEnd)}`;
   };
 
+  // const getPriorityRing = (priority?: CalendarEvent['priority']) => {
+  //   switch (priority) {
+  //     case 'critical':
+  //       return 'ring-2 ring-red-500';
+  //     case 'high':
+  //       return 'ring-1 ring-red-500';
+  //     // case 'medium':
+  //     //   return 'ring-2 ring-yellow-500';
+  //     // case 'low':
+  //     //   return 'ring-2 ring-green-500';
+  //     // case 'info':
+  //     //   return 'ring-blue-200';
+  //     default:
+  //       return '';
+  //   }
+  // };
+
   if (view === 'month') {
+    // const isEventInPast = isPast(displayEnd);
+    // const isOverdue = isEventInPast && !event.done;
     return (
       <EventWrapper
         event={event}
@@ -152,6 +178,7 @@ export function EventItem({
         isDragging={isDragging}
         onClick={onClick}
         className={cn(
+          // getPriorityRing(event.priority),
           'mt-[var(--event-gap)] h-[var(--event-height)] items-center text-[10px] sm:text-xs',
           className
         )}
@@ -162,13 +189,44 @@ export function EventItem({
         onTouchStart={onTouchStart}
       >
         {children || (
-          <span className="truncate">
+          <span className="truncate flex flex-row items-center space-x-2">
             {!event.allDay && (
               <span className="truncate font-normal opacity-70 sm:text-[11px]">
                 {formatTimeWithOptionalMinutes(displayStart)}{' '}
               </span>
             )}
+            {event.priority === 'critical' && (
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+              </span>
+            )}
+            {event.priority === 'high' && (
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 border border-orange-500 bg-transparent"></span>
+              </span>
+            )}
             {event.title}
+            {event.priority === 'critical'}
+            {event.priority === 'high'}
+            {event.priority === 'medium'}
+            {event.priority === 'low'}
+            {event.priority === 'info'}
+            {event.priority && (
+              <span
+                className={cn(
+                  'ml-1 rounded px-1 text-[10px] font-semibold uppercase',
+                  event.priority === 'critical' && 'text-red-500',
+                  event.priority === 'high' && 'text-red-300',
+                  event.priority === 'medium' && 'text-yellow-500',
+                  event.priority === 'low' && 'text-green-500',
+                  event.priority === 'info' && 'text-blue-500'
+                )}
+              >
+                {event.priority}
+              </span>
+            )}
           </span>
         )}
       </EventWrapper>

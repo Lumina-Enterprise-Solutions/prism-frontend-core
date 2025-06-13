@@ -98,9 +98,9 @@ export default function DashboardTemplate() {
         {[...Array(5)].map((_, idx) => (
           <Card
             key={idx}
-            className="w-full sm:w-[300px] px-6 py-4 flex items-center gap-4 shadow-sm hover:bg-muted/10"
+            className="w-full sm:w-[300px] px-6 py-4 flex items-center gap-4 hover:bg-muted/10 border border-muted-foreground/10 shadow-none"
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted shadow-2xl text-muted-foreground">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted text-muted-foreground">
               <Activity className="w-4 h-4" />
             </div>
             <div className="flex flex-col">

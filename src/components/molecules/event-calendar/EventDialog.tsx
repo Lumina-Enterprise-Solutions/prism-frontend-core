@@ -36,7 +36,10 @@ import {
   SelectValue,
 } from '../../ui/select';
 import { Checkbox } from '../../ui/checkbox';
+import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import { RadioGroup, RadioGroupItem } from '../../ui/radio-group';
+import ReusableRadioGroup from '../advanced-radiobox/RadioboxHorizontal';
+import { calendarPriorityOptions } from '../../../helper/constant/calendar-priority';
 
 interface EventDialogProps {
   event: CalendarEvent | null;
@@ -55,6 +58,7 @@ export function EventDialog({
 }: EventDialogProps) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [priority, setPriority] = useState<CalendarEvent['priority']>('low');
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [endDate, setEndDate] = useState<Date>(new Date());
   const [startTime, setStartTime] = useState(`${DefaultStartHour}:00`);
@@ -75,6 +79,7 @@ export function EventDialog({
     if (event) {
       setTitle(event.title || '');
       setDescription(event.description || '');
+      setPriority(event.priority || 'low');
 
       const start = new Date(event.start);
       const end = new Date(event.end);
@@ -95,6 +100,7 @@ export function EventDialog({
   const resetForm = () => {
     setTitle('');
     setDescription('');
+    setPriority('low');
     setStartDate(new Date());
     setEndDate(new Date());
     setStartTime(`${DefaultStartHour}:00`);
@@ -170,6 +176,7 @@ export function EventDialog({
       id: event?.id || '',
       title: eventTitle,
       description,
+      priority,
       start,
       end,
       allDay,
@@ -263,6 +270,29 @@ export function EventDialog({
               onChange={(e) => setDescription(e.target.value)}
               rows={3}
             />
+          </div>
+
+          <div>
+            <RadioGroupPrimitive.Root
+              data-slot="radio-group"
+              defaultValue="english"
+              className="gap-3 flex flex-col"
+            >
+              <h1 className="text-sm font-semibold text-foreground">
+                Priority
+              </h1>
+              <ReusableRadioGroup
+                name="priority"
+                options={calendarPriorityOptions}
+                defaultValue={priority}
+                onValueChange={(value) => {
+                  setPriority(value as CalendarEvent['priority']);
+                }}
+                onChange={(value) =>
+                  setPriority(value as CalendarEvent['priority'])
+                }
+              />
+            </RadioGroupPrimitive.Root>
           </div>
 
           <div className="flex gap-4">

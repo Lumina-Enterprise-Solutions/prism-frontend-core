@@ -9,7 +9,6 @@ import {
   ChevronDown,
 } from 'lucide-react';
 import { jsPDF } from 'jspdf';
-import 'jspdf-autotable';
 import * as XLSX from 'xlsx';
 import {
   DropdownMenu,
@@ -155,7 +154,6 @@ export function DataTableExport() {
       });
     });
 
-    // @ts-ignore - jspdf-autotable types are not included
     doc.autoTable({
       head: [headers],
       body: rows,
@@ -255,7 +253,11 @@ export function DataTableExport() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="h-9 gap-1.5 text-xs">
+        <Button
+          variant="outline"
+          size="sm"
+          className="h-9 gap-1.5 text-xs border border-muted-foreground/30 shadow-none focus:border-muted-foreground/10 focus:outline-none transition-all duration-200 hover:shadow-none"
+        >
           <FileDown className="h-3.5 w-3.5" />
           Export
           <ChevronDown className="h-3.5 w-3.5 opacity-50" />
