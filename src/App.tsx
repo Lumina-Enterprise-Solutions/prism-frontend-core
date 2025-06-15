@@ -18,7 +18,8 @@ import { ResetPasswordPage } from './pages/Auth/reset-password';
 import UserManagementPage from './pages/UserManagement/user-management';
 import { TourProvider } from '@reactour/tour';
 import { steps } from './types/Step';
-import ProfilePage from './pages/profile';
+import ProfilePage from './pages/Setting/profile';
+import PrivacyPage from './pages/Setting/privacy';
 
 function App() {
   const location = useLocation();
@@ -63,8 +64,9 @@ function App() {
             {/* Protected Routes */}
             <Route element={<DefaultLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/setting/profile" element={<ProfilePage />} />
               <Route path="/user-management" element={<UserManagementPage />} />
+              <Route path="/setting/privacy" element={<PrivacyPage />} />
               {/* <Route
               path="/dashboard"
               element={

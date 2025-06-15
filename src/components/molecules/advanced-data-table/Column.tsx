@@ -84,6 +84,55 @@ export function createSelectionColumn<T>(): ColumnDef<T> {
   };
 }
 
+export function createActionsColumnCustoms<T>(
+  actions: Array<{
+    label?: string;
+    onClick: (data: T) => void;
+    icon?: React.ReactNode;
+    popover?: (data: T) => React.ReactNode;
+    variant?: 'outline' | 'ghost' | 'secondary' | 'destructive' | 'teal';
+  }>
+): ColumnDef<T> {
+  return {
+    id: 'actions',
+    header: 'Actions',
+    cell: ({ row }) => {
+      const data = row.original;
+
+      return (
+        <div className="flex flex-wrap items-center gap-2">
+          {actions.map((action, index) => {
+            const {
+              popover,
+              onClick,
+              variant = 'outline',
+              icon,
+              label,
+            } = action;
+
+            return (
+              <div key={index}>
+                {popover ? (
+                  popover(data)
+                ) : (
+                  <Button
+                    variant={variant}
+                    onClick={() => onClick(data)}
+                    className="px-2 py-2"
+                  >
+                    {icon && <span>{icon}</span>}
+                    {label}
+                  </Button>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      );
+    },
+  };
+}
+
 // Helper function to create an actions column
 export function createActionsColumn<T>(
   actions: Array<{

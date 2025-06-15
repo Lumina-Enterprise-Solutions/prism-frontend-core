@@ -12,6 +12,8 @@ const badgeVariants = cva(
           'border-transparent bg-primary/20 border-primary/30 text-primary font-semibold [a&]:hover:bg-primary/90',
         secondary:
           'border-transparent bg-secondary/20 border-secondary/30 font-semibold text-secondary [a&]:hover:bg-secondary/90',
+        growth:
+          'border-transparent bg-growth-green/20 border-growth-green/30 font-semibold text-growth-green [a&]:hover:bg-growth-green/90',
         gold: 'border-transparent bg-gold/10 border-gold/30 font-semibold text-gold [a&]:hover:bg-secondary/90',
         destructive:
           'border-transparent bg-destructive/20 border-destructive/30 font-semibold text-destructive [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',

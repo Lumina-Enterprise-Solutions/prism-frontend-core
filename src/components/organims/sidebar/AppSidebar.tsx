@@ -125,20 +125,20 @@ const data = {
       icon: Settings2,
       items: [
         {
-          title: 'General',
+          title: 'Profile',
+          url: '/setting/profile',
+        },
+        {
+          title: 'Apperance',
           url: '#',
         },
         {
-          title: 'Team',
+          title: 'Account',
           url: '#',
         },
         {
-          title: 'Billing',
-          url: '#',
-        },
-        {
-          title: 'Limits',
-          url: '#',
+          title: 'Privacy',
+          url: '/setting/privacy',
         },
       ],
     },

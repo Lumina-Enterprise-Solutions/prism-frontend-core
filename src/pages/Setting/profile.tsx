@@ -1,15 +1,19 @@
 import { UserPen } from 'lucide-react';
-import { Card } from '../components/atoms/Card';
-import { useTitle } from '../hooks/services/use-title';
-import { Avatar, AvatarFallback, AvatarImage } from '../components/ui/avatar';
-import { Separator } from '../components/ui/separator';
-import { Label } from '../components/atoms/Label';
-import { Input } from '../components/atoms/Input';
-import { Textarea } from '../components/ui/textarea';
+import { Card } from '../../components/atoms/Card';
+import { useTitle } from '../../hooks/services/use-title';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '../../components/ui/avatar';
+import { Separator } from '../../components/ui/separator';
+import { Label } from '../../components/atoms/Label';
+import { Input } from '../../components/atoms/Input';
+import { Textarea } from '../../components/ui/textarea';
 import { useTranslation } from 'react-i18next';
-import { ProfileDetail } from '../helper/mock/profile-details-dummy';
-import { DynamicDialogForm } from '../components/molecules/advanced-dialog/DialogZoom';
-import { profileSchema } from '../helper/schema/profileSchema';
+import { ProfileDetail } from '../../helper/mock/profile-details-dummy';
+import { DynamicDialogForm } from '../../components/molecules/advanced-dialog/DialogZoom';
+import { profileSchema } from '../../helper/schema/profileSchema';
 
 export default function ProfilePage() {
   useTitle('Profile - Prism');
@@ -69,21 +73,6 @@ export default function ProfilePage() {
                   placeholder: 'Enter your description',
                   colSpan: 2,
                 },
-                {
-                  name: 'country',
-                  label: 'Country',
-                  placeholder: 'Enter your country',
-                },
-                {
-                  name: 'city',
-                  label: 'City',
-                  placeholder: 'Enter your city',
-                },
-                {
-                  name: 'pos_code',
-                  label: 'Pos Code',
-                  placeholder: 'Enter your pos code',
-                },
               ]}
               onSubmit={(data) => {
                 console.log('Form submitted:', data);
@@ -112,29 +101,15 @@ export default function ProfilePage() {
         </div>
         <div className="grid grid-cols-2 gap-4 py-4">
           <div className="cols-1 gap-4">
-            <Label htmlFor="first_name" className="text-sm font-semibold">
-              {t('profile.first_name', 'First Name')}
+            <Label htmlFor="full_name" className="text-sm font-semibold">
+              {t('profile.full_name', 'Full Name')}
             </Label>
             <Input
               //   {...register('email')}
               id="first_name"
               type="text"
-              value={ProfileDetail.first_name}
-              placeholder={t('profile.firstNamePlaceholder', 'First Name')}
-              className="pt-2"
-              disabled
-            />
-          </div>
-          <div className="cols-1 gap-4">
-            <Label htmlFor="last_name" className="text-sm font-semibold">
-              {t('profile.last_name', 'Last Name')}
-            </Label>
-            <Input
-              //   {...register('email')}
-              id="last_name"
-              type="text"
-              value={ProfileDetail.last_name}
-              placeholder={t('profile.lastNamePlaceholder', 'Last Name')}
+              value={`${ProfileDetail.first_name} ${ProfileDetail.last_name}`}
+              placeholder={t('profile.firstNamePlaceholder', 'Full Name')}
               className="pt-2"
               disabled
             />
@@ -190,53 +165,6 @@ export default function ProfilePage() {
           </div>
           <span className="ppt-4"></span>
           <Separator className="col-span-2 px-2" />
-        </div>
-
-        <div className="py-4">
-          <h1 className="text-foreground text-xl font-semibold tour-welcome">
-            {t('profile.subtitle', 'Address')}
-          </h1>
-        </div>
-        <div className="grid grid-cols-2 gap-4 py-4">
-          <div className="cols-1 gap-4">
-            <Label htmlFor="country" className="text-sm font-semibold">
-              {t('profile.country', 'Country')}
-            </Label>
-            <Input
-              //   {...register('country')}
-              id="country"
-              type="text"
-              value={ProfileDetail.country}
-              placeholder={t('profile.countryPlaceholder', '-')}
-              disabled
-            />
-          </div>
-          <div className="cols-1 gap-4">
-            <Label htmlFor="city" className="text-sm font-semibold">
-              {t('profile.city', 'City/State')}
-            </Label>
-            <Input
-              //   {...register('city')}
-              id="city"
-              type="text"
-              value={ProfileDetail.city}
-              placeholder={t('profile.countryPlaceholder', '-')}
-              disabled
-            />
-          </div>
-          <div className="cols-1 gap-4">
-            <Label htmlFor="pos_code" className="text-sm font-semibold">
-              {t('profile.pos_code', 'Pos Code')}
-            </Label>
-            <Input
-              //   {...register('pos_code')}
-              id="pos_code"
-              type="text"
-              value={ProfileDetail.pos_code}
-              placeholder={t('profile.countryPlaceholder', '-')}
-              disabled
-            />
-          </div>
         </div>
       </Card>
     </div>

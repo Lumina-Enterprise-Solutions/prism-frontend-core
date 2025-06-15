@@ -1,21 +1,32 @@
-import { Activity, ActivityIcon, TrendingUp } from 'lucide-react';
+import {
+  Activity,
+  ActivityIcon,
+  Eye,
+  TrendingUp,
+} from 'lucide-react';
 import { Card, CardContent } from '../../atoms/Card';
 import { ChartAreaInteractive } from '../../molecules/ChartAreaInteractive';
 import { DataTableCustoms } from '../../molecules/advanced-data-table/DataTableCustoms';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { dummyProduct } from '../../../helper/mock/product-dummy';
 import type { DummyProductType } from '../../../types/dummy-product-types';
 import {
+  createActionsColumnCustoms,
   createBadgeColumn,
   createCopyableColumn,
   createSortableHeader,
 } from '../../molecules/advanced-data-table/Column';
 import type { Row } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
+import { Dialog, DialogContent } from '../../ui/dialog';
+import { DialogTable } from '../../molecules/advanced-dialog/DialogTable';
 
 export default function DashboardTemplate() {
   const products = dummyProduct;
   const { t } = useTranslation();
+  const [selectedProduct, setSelectedProduct] =
+    useState<DummyProductType | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const columns = useMemo(
     () => [
@@ -56,6 +67,16 @@ export default function DashboardTemplate() {
           );
         },
       },
+      createActionsColumnCustoms<DummyProductType>([
+        {
+          onClick: (data) => {
+            setSelectedProduct(data);
+            setIsDialogOpen(true);
+          },
+          icon: <Eye className="h-4 w-4" />,
+          variant: 'outline',
+        },
+      ]),
     ],
     []
   );
@@ -94,6 +115,12 @@ export default function DashboardTemplate() {
   };
   return (
     <>
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="w-full">
+          {selectedProduct && <DialogTable product={selectedProduct} />}
+        </DialogContent>
+      </Dialog>
+      ;
       <div className="p-4 md:p-10 flex flex-wrap justify-center gap-4 tour-product-overview">
         {[...Array(5)].map((_, idx) => (
           <Card
@@ -121,7 +148,6 @@ export default function DashboardTemplate() {
       <div className="p-4 md:p-10 tour-chart">
         <ChartAreaInteractive />
       </div>
-
       {/* Table */}
       <CardContent className="px-4 md:px-10 pt-4 space-y-2">
         <h1 className="text-3xl font-semibold text-foreground tour-welcome">
@@ -131,7 +157,15 @@ export default function DashboardTemplate() {
           columns={columns}
           data={products}
           enableGrouping={false}
+          searchKey="product_name"
           renderDetailPanel={renderDetailPanel}
+          exportData={true}
+          exportFilename="user-data"
+          enableExpanding={true}
+          enableFilters={true}
+          enableSavedViews={true}
+          variant="card"
+          savedViews={[]}
         />
       </CardContent>
     </>

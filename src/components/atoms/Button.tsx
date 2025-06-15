@@ -16,6 +16,7 @@ const buttonVariants = cva(
           'border border-muted-foreground/10 bg-card shadow-sm hover:bg-muted/30 duration-200 hover:shadow-md',
         secondary:
           'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
+        teal: 'text-growth-green-foreground border border-growth-green bg-growth-green shadow-sm hover:bg-growth-green/70 duration-200 hover:shadow-md',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
         activtabe: 'bg-primary text-primary-foreground',

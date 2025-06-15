@@ -13,6 +13,8 @@ import { AvatarUser } from '../../components/atoms/Avatar';
 import { useTitle } from '../../hooks/services/use-title';
 import { useMemo } from 'react';
 import DialogRole from '../../components/molecules/advanced-dialog/DialogRole';
+import { DynamicDialogForm } from '../../components/molecules/advanced-dialog/DialogZoom';
+import { registerSchema } from '../../helper/schema/authSchema';
 // import { useUsers } from '../hooks/services/use-users';
 
 export default function UserManagementPage() {
@@ -127,13 +129,52 @@ export default function UserManagementPage() {
   return (
     <div className="mx-auto w-full h-full sm:px-4 lg:px-6">
       <Card className="overflow-hidden shadow-sm sm:rounded-lg">
-        <div className="px-6 py-4 gap-1">
-          <h1 className="text-foreground text-3xl font-semibold">
-            User Management
-          </h1>
-          <p className="text-foreground text-sm font-light">
-            Manage your team members and their account permission here.
-          </p>
+        <div className="px-6 py-4 gap-1 flex justify-between">
+          <div>
+            <h1 className="text-foreground text-3xl font-semibold">
+              User Management
+            </h1>
+            <p className="text-foreground text-sm font-light">
+              Manage your team members and their account permission here.
+            </p>
+          </div>
+          <div className="py-4 gap-1">
+            <DynamicDialogForm
+              schema={registerSchema}
+              title="Create User"
+              triggerText="Create User"
+              icon={UserCogIcon}
+              fields={[
+                {
+                  name: 'first_name',
+                  label: 'First Name',
+                  placeholder: 'Enter your first name',
+                },
+                {
+                  name: 'last_name',
+                  label: 'Last Name',
+                  placeholder: 'Enter your last name',
+                },
+                {
+                  name: 'email',
+                  label: 'Email',
+                  type: 'email',
+                  placeholder: 'Enter your email',
+                  colSpan: 2,
+                },
+                {
+                  name: 'password',
+                  label: 'Password',
+                  type: 'password',
+                  placeholder: 'Enter your password',
+                  colSpan: 2,
+                },
+              ]}
+              onSubmit={(data) => {
+                console.log('Form submitted:', data);
+              }}
+            />
+          </div>
         </div>
         <CardContent className="pt-6">
           <DataTable

@@ -20,8 +20,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '../../ui/dialog';
-import { type LucideIcon } from 'lucide-react';
+import { EyeIcon, EyeOffIcon, type LucideIcon } from 'lucide-react';
 import type { FieldConfig } from '../../../types/field-config-types';
+import { useState } from 'react';
 
 interface DynamicDialogFormProps<T extends ZodType<any, any, any>> {
   schema: T;
@@ -52,6 +53,8 @@ export function DynamicDialogForm<T extends ZodType<any, any, any>>({
     resolver: zodResolver(schema),
     defaultValues,
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleFormSubmit: SubmitHandler<z.infer<T>> = (data) => {
     onSubmit(data);
@@ -91,6 +94,28 @@ export function DynamicDialogForm<T extends ZodType<any, any, any>>({
                         type="file"
                         {...register(fieldName)}
                       />
+                    ) : field.type === 'password' ? (
+                      <div className="relative">
+                        <Input
+                          id={field.name}
+                          type={showPassword ? 'text' : 'password'}
+                          placeholder={field.placeholder}
+                          {...register(fieldName)}
+                          className="pr-10"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword((prev) => !prev)}
+                          className="absolute inset-y-0 right-2 flex items-center text-muted-foreground"
+                          tabIndex={-1}
+                        >
+                          {showPassword ? (
+                            <EyeOffIcon className="w-4 h-4" />
+                          ) : (
+                            <EyeIcon className="w-4 h-4" />
+                          )}
+                        </button>
+                      </div>
                     ) : (
                       <Input
                         id={field.name}

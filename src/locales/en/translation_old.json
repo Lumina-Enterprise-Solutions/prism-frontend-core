@@ -2,5 +2,15 @@
   "form": {
     "confirmPassword": "Confirm Password",
     "confirmPasswordPlaceholder": "********"
+  },
+  "profile": {
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "lastNamePlaceholder": "Last Name",
+    "subtitle": "Address",
+    "country": "Country",
+    "countryPlaceholder": "-",
+    "city": "City/State",
+    "pos_code": "Pos Code"
   }
 }
