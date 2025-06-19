@@ -20,6 +20,9 @@ import { TourProvider } from '@reactour/tour';
 import { steps } from './types/Step';
 import ProfilePage from './pages/Setting/profile';
 import PrivacyPage from './pages/Setting/privacy';
+import AppearancePage from './pages/Setting/appearance';
+import ProtectedRoute from './components/templates/PortectedLayout';
+import KanbanRoute from './app/kanban/routes/route';
 
 function App() {
   const location = useLocation();
@@ -67,6 +70,7 @@ function App() {
               <Route path="/setting/profile" element={<ProfilePage />} />
               <Route path="/user-management" element={<UserManagementPage />} />
               <Route path="/setting/privacy" element={<PrivacyPage />} />
+              <Route path="/setting/appearance" element={<AppearancePage />} />
               {/* <Route
               path="/dashboard"
               element={
@@ -80,6 +84,14 @@ function App() {
               }
             /> */}
             </Route>
+            <Route
+              path="/kanban/*"
+              element={
+                // <ProtectedRoute>
+                <KanbanRoute />
+                // </ProtectedRoute>
+              }
+            />
             <Route path="*" element={<Dynamic404 />} />
           </Routes>
         </TourProvider>

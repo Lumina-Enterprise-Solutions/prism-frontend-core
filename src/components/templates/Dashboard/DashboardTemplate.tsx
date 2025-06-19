@@ -1,9 +1,4 @@
-import {
-  Activity,
-  ActivityIcon,
-  Eye,
-  TrendingUp,
-} from 'lucide-react';
+import { Activity, ActivityIcon, Eye, TrendingUp } from 'lucide-react';
 import { Card, CardContent } from '../../atoms/Card';
 import { ChartAreaInteractive } from '../../molecules/ChartAreaInteractive';
 import { DataTableCustoms } from '../../molecules/advanced-data-table/DataTableCustoms';
@@ -120,7 +115,6 @@ export default function DashboardTemplate() {
           {selectedProduct && <DialogTable product={selectedProduct} />}
         </DialogContent>
       </Dialog>
-      ;
       <div className="p-4 md:p-10 flex flex-wrap justify-center gap-4 tour-product-overview">
         {[...Array(5)].map((_, idx) => (
           <Card

@@ -47,6 +47,8 @@ interface EventDialogProps {
   onClose: () => void;
   onSave: (event: CalendarEvent) => void;
   onDelete: (eventId: string) => void;
+  viewOnly: boolean;
+  setViewOnly: (value: boolean) => void;
 }
 
 export function EventDialog({
@@ -55,6 +57,8 @@ export function EventDialog({
   onClose,
   onSave,
   onDelete,
+  viewOnly,
+  setViewOnly,
 }: EventDialogProps) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -240,7 +244,13 @@ export function EventDialog({
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>{event?.id ? 'Edit Event' : 'Create Event'}</DialogTitle>
+          <DialogTitle>
+            {viewOnly
+              ? 'View Event'
+              : event?.id
+              ? 'Edit Event'
+              : 'Create Event'}
+          </DialogTitle>
           <DialogDescription className="sr-only">
             {event?.id
               ? 'Edit the details of this event'
@@ -259,6 +269,7 @@ export function EventDialog({
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              disabled={viewOnly}
             />
           </div>
 
@@ -269,6 +280,7 @@ export function EventDialog({
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={3}
+              disabled={viewOnly}
             />
           </div>
 
@@ -285,6 +297,7 @@ export function EventDialog({
                 name="priority"
                 options={calendarPriorityOptions}
                 defaultValue={priority}
+                disabled={viewOnly}
                 onValueChange={(value) => {
                   setPriority(value as CalendarEvent['priority']);
                 }}
@@ -328,10 +341,10 @@ export function EventDialog({
                     mode="single"
                     selected={startDate}
                     defaultMonth={startDate}
+                    disabled={viewOnly ? () => true : undefined}
                     onSelect={(date) => {
                       if (date) {
                         setStartDate(date);
-                        // If end date is before the new start date, update it to match the start date
                         if (isBefore(endDate, date)) {
                           setEndDate(date);
                         }
@@ -396,7 +409,8 @@ export function EventDialog({
                     mode="single"
                     selected={endDate}
                     defaultMonth={endDate}
-                    disabled={{ before: startDate }}
+                    disabled={viewOnly ? () => true : undefined}
+                    // disabled={{ before: startDate }}
                     onSelect={(date) => {
                       if (date) {
                         setEndDate(date);
@@ -433,6 +447,7 @@ export function EventDialog({
               id="all-day"
               checked={allDay}
               onCheckedChange={(checked) => setAllDay(checked === true)}
+              disabled={viewOnly}
             />
             <Label htmlFor="all-day">All day</Label>
           </div>
@@ -443,6 +458,7 @@ export function EventDialog({
               id="location"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
+              disabled={viewOnly}
             />
           </div>
           <fieldset className="space-y-4">
@@ -453,7 +469,10 @@ export function EventDialog({
               className="flex gap-1.5"
               defaultValue={colorOptions[0]?.value}
               value={color}
-              onValueChange={(value: EventColor) => setColor(value)}
+              onValueChange={(value: EventColor) => {
+                if (!viewOnly) setColor(value);
+              }}
+              disabled={viewOnly}
             >
               {colorOptions.map((colorOption) => (
                 <RadioGroupItem
@@ -461,6 +480,7 @@ export function EventDialog({
                   id={`color-${colorOption.value}`}
                   value={colorOption.value}
                   aria-label={colorOption.label}
+                  disabled={viewOnly} // <-- ini wajib
                   className={cn(
                     'size-6 shadow-none',
                     colorOption.bgClass,
@@ -472,7 +492,7 @@ export function EventDialog({
           </fieldset>
         </div>
         <DialogFooter className="flex-row sm:justify-between">
-          {event?.id && (
+          {!viewOnly && event?.id && (
             <Button
               variant="outline"
               size="icon"
@@ -484,9 +504,12 @@ export function EventDialog({
           )}
           <div className="flex flex-1 justify-end gap-2">
             <Button variant="outline" onClick={onClose}>
-              Cancel
+              {viewOnly ? 'Close' : 'Cancel'}
             </Button>
-            <Button onClick={handleSave}>Save</Button>
+            {viewOnly && (
+              <Button onClick={() => setViewOnly(false)}>Edit</Button>
+            )}
+            {!viewOnly && <Button onClick={handleSave}>Save</Button>}
           </div>
         </DialogFooter>
       </DialogContent>

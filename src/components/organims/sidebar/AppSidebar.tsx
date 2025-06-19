@@ -21,13 +21,16 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
+  useSidebar,
 } from '../../ui/sidebar';
-import { TeamSwitcher } from './TeamSwitcher';
 import { NavMain } from './NavMain';
 import { NavProjects } from './NavProject';
 import { NavUser } from './NavUser';
+import logoFull from '../../../assets/images/logo/Prism_with_text.png';
+import logoIcon from '../../../assets/images/logo/Prism.png';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
-// This is sample data.
 const data = {
   user: {
     name: 'shadcn',
@@ -36,19 +39,19 @@ const data = {
   },
   teams: [
     {
-      name: 'Acme Inc',
+      name: 'Cutting',
       logo: GalleryVerticalEnd,
-      plan: 'Enterprise',
+      plan: 'Department',
     },
     {
-      name: 'Acme Corp.',
+      name: 'Warehouse',
       logo: AudioWaveform,
-      plan: 'Startup',
+      plan: 'Department',
     },
     {
-      name: 'Evil Corp.',
+      name: 'PMC',
       logo: Command,
-      plan: 'Free',
+      plan: 'Department',
     },
   ],
   navMain: [
@@ -129,8 +132,8 @@ const data = {
           url: '/setting/profile',
         },
         {
-          title: 'Apperance',
-          url: '#',
+          title: 'Appearance',
+          url: '/setting/appearance',
         },
         {
           title: 'Account',
@@ -168,11 +171,50 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { state } = useSidebar();
+
+  const isCollapsed = state === 'collapsed';
+
   return (
     <Sidebar collapsible="icon" {...props}>
-      {/* <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
-      </SidebarHeader> */}
+      <SidebarHeader>
+        <motion.div
+          className="flex items-center justify-center p-2"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
+          <Link to="/home">
+            <AnimatePresence mode="wait">
+              {isCollapsed ? (
+                <motion.img
+                  key="logo-icon"
+                  src={logoIcon}
+                  alt="Logo Icon"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.3 }}
+                  whileHover={{ scale: 1.1 }}
+                  className="h-4 w-4"
+                />
+              ) : (
+                <motion.img
+                  key="logo-full"
+                  src={logoFull}
+                  alt="Logo Full"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.4, ease: 'easeOut' }}
+                  whileHover={{ scale: 1.1 }}
+                  className="h-10"
+                />
+              )}
+            </AnimatePresence>
+          </Link>
+        </motion.div>
+      </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
         <NavProjects projects={data.projects} />

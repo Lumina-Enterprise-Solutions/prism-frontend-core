@@ -17,16 +17,17 @@ import {
   useSidebar,
 } from '../../ui/sidebar';
 export function TeamSwitcher({
-  teams,
+  departments,
 }: {
-  teams: {
+  departments: {
     name: string;
     logo: React.ElementType;
     plan: string;
+    url: string;
   }[];
 }) {
   const { isMobile } = useSidebar();
-  const [activeTeam, setActiveTeam] = React.useState(teams[0]);
+  const [activeTeam, setActiveTeam] = React.useState(departments[0]);
   if (!activeTeam) {
     return null;
   }
@@ -60,18 +61,23 @@ export function TeamSwitcher({
             sideOffset={4}
           >
             <DropdownMenuLabel className="text-xs text-muted-foreground">
-              Teams
+              Department
             </DropdownMenuLabel>
-            {teams.map((team, index) => (
+            {departments.map((department, index) => (
               <DropdownMenuItem
-                key={team.name}
-                onClick={() => setActiveTeam(team)}
+                key={department.name}
+                onClick={() => setActiveTeam(department)}
                 className="gap-2 p-2 hover:bg-muted focus:bg-muted focus:text-foreground"
               >
-                <div className="flex size-6 items-center justify-center rounded-sm">
-                  <team.logo className="size-4 shrink-0" />
-                </div>
-                {team.name}
+                <a
+                  href={department.url}
+                  className="flex items-center justify-center space-x-2"
+                >
+                  <div className="size-4 rounded-sm">
+                    <department.logo className="size-4 shrink-0" />
+                  </div>
+                  <p>{department.name}</p>
+                </a>
                 <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
               </DropdownMenuItem>
             ))}

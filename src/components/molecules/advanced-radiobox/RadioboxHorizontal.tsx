@@ -15,6 +15,7 @@ interface ReusableRadioGroupProps {
   register?: any;
   error?: string;
   className?: string;
+  disabled?: boolean;
 }
 
 export default function ReusableRadioGroup({
@@ -26,6 +27,7 @@ export default function ReusableRadioGroup({
   register,
   error,
   className,
+  disabled,
   ...props
 }: ReusableRadioGroupProps) {
   return (

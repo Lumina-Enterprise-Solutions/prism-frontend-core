@@ -66,6 +66,7 @@ export function EventCalendar({
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(
     null
   );
+  const [viewOnly, setViewOnly] = useState(true);
 
   // Add keyboard shortcuts for view switching
   useEffect(() => {
@@ -352,6 +353,7 @@ export function EventCalendar({
               onClick={() => {
                 setSelectedEvent(null); // Ensure we're creating a new event
                 setIsEventDialogOpen(true);
+                setViewOnly(false);
               }}
             >
               <PlusIcon
@@ -404,11 +406,13 @@ export function EventCalendar({
           onClose={() => {
             setIsEventDialogOpen(false);
             setSelectedEvent(null);
+            setViewOnly(true);
           }}
           onSave={handleEventSave}
           onDelete={handleEventDelete}
+          viewOnly={viewOnly}
+          setViewOnly={setViewOnly}
         />
-        
       </CalendarDndProvider>
     </div>
   );

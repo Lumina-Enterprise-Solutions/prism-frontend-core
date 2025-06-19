@@ -1,7 +1,7 @@
 import { cn } from '../../utils/utils';
-import logo from '../../assets/images/logo/Prism_ERP_Logo.png';
-import lightLogo from '../../assets/images/logo/Prism_ERP_montserrat_medium_light_mode.png';
-import darkLogo from '../../assets/images/logo/Prism_ERP_montserrat_medium_dark_mode.png';
+import logo from '../../assets/images/logo/Prism.png';
+import lightLogo from '../../assets/images/logo/Prism_with_text.png';
+import darkLogo from '../../assets/images/logo/Prism_with_text.png';
 
 interface LogoProps {
   variant?: 'full' | 'icon';
@@ -27,7 +27,7 @@ export function Logo({
   return (
     <img
       src={darkMode ? `${darkLogo}` : `${lightLogo}`}
-      alt="Teresa Logo"
+      alt="Prism Logo"
       className={cn('h-8 w-auto', className)}
     />
   );

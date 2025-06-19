@@ -4,7 +4,7 @@ import './index.css';
 import './i18n';
 import App from './App.tsx';
 import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from './components/theme-provider.tsx';
+import { ThemeProvider } from './context/theme-provider.tsx';
 import { Provider } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 import { store } from './store/index.ts';
@@ -12,7 +12,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ToastContainer } from 'react-toastify';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorFallback } from './components/templates/ErrorBoundary/error-fallback.tsx';
-import { ToastContextProvider } from './components/ToastProvider.tsx';
+import { ToastContextProvider } from './context/ToastProvider.tsx';
+import { AppearanceThemeProvider } from './context/AppearanceThemeProvider.tsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,14 +30,16 @@ createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-          <ThemeProvider>
-            <ErrorBoundary FallbackComponent={ErrorFallback}>
-              <ToastContextProvider>
-                <App />
-                <ToastContainer position="top-right" autoClose={5000} />
-              </ToastContextProvider>
-            </ErrorBoundary>
-          </ThemeProvider>
+          <AppearanceThemeProvider>
+            <ThemeProvider>
+              <ErrorBoundary FallbackComponent={ErrorFallback}>
+                <ToastContextProvider>
+                  <App />
+                  <ToastContainer position="top-right" autoClose={5000} />
+                </ToastContextProvider>
+              </ErrorBoundary>
+            </ThemeProvider>
+          </AppearanceThemeProvider>
         </BrowserRouter>
       </QueryClientProvider>
     </Provider>

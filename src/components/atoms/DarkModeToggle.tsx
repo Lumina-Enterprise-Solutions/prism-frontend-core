@@ -1,6 +1,6 @@
 import { Moon, Sun } from 'lucide-react';
 import { Button } from './Button';
-import { useTheme } from '../theme-provider';
+import { useTheme } from '../../context/theme-provider';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const MotionMoon = motion(Moon);

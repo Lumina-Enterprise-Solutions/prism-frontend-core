@@ -17,27 +17,7 @@ import { DarkModeToggle } from '../atoms/DarkModeToggle';
 import React from 'react';
 import { LanguangeToggle } from '../atoms/LanguangeToggle';
 import { TeamSwitcher } from '../organims/sidebar/TeamSwitcher';
-import { AudioWaveform, Command, GalleryVerticalEnd } from 'lucide-react';
-
-const data = {
-  teams: [
-    {
-      name: 'Acme Inc',
-      logo: GalleryVerticalEnd,
-      plan: 'Enterprise',
-    },
-    {
-      name: 'Acme Corp.',
-      logo: AudioWaveform,
-      plan: 'Startup',
-    },
-    {
-      name: 'Evil Corp.',
-      logo: Command,
-      plan: 'Free',
-    },
-  ],
-};
+import { data } from '../../helper/constant/team-constant';
 
 export default function DefaultLayout({
   header,
@@ -86,7 +66,7 @@ export default function DefaultLayout({
                 <LanguangeToggle />
                 <DarkModeToggle />
               </div>
-              <TeamSwitcher teams={data.teams} />
+              <TeamSwitcher departments={data.department} />
             </div>
           </div>
         </header>

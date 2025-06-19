@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 
 import { useState, useEffect } from 'react';
-import { useTheme } from '../../theme-provider';
+import { useTheme } from '../../../context/theme-provider';
 import { Logo } from '../../atoms/Logo';
 
 interface LoadingScreenProps {
