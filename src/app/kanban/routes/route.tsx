@@ -5,8 +5,10 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import Dynamic404 from '../../../pages/404/Dynamic404';
 import { useEffect, useState } from 'react';
 import { LoadingUI } from '../../../components/organims/loading/LoadingUi';
-import Kanban from '../pages/kanban';
 import KanbanLayout from '../layout/KanbanDefaultLayout';
+import BoardPage from '../pages/board';
+import { ToastContextProvider } from '../../../context/ToastProvider';
+import { ToastProvider } from '../../../components/ui/use-toast';
 
 export default function KanbanRoute() {
   const location = useLocation();
@@ -34,12 +36,16 @@ export default function KanbanRoute() {
   return (
     <AnimatePresence mode="wait">
       <I18nextProvider i18n={i18n}>
-        <Routes location={location} key={location.pathname}>
-          <Route element={<KanbanLayout header={''} />}>
-            <Route path="/board" element={<Kanban />} />
-          </Route>
-          <Route path="*" element={<Dynamic404 />} />
-        </Routes>
+        <ToastContextProvider>
+          <ToastProvider>
+            <Routes location={location} key={location.pathname}>
+              <Route element={<KanbanLayout header={''} />}>
+                <Route path="/board" element={<BoardPage />} />
+              </Route>
+              <Route path="*" element={<Dynamic404 />} />
+            </Routes>
+          </ToastProvider>
+        </ToastContextProvider>
       </I18nextProvider>
     </AnimatePresence>
   );

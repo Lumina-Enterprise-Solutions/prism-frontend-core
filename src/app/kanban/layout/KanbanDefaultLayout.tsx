@@ -6,6 +6,7 @@ import { data } from '../../../helper/constant/team-constant';
 import { Outlet } from 'react-router-dom';
 import { SidebarProvider } from '../../../components/ui/sidebar';
 import logoFull from '../../../assets/images/logo/Prism_with_text.png';
+import CreateBoardPage from '../pages/[id]/create';
 
 export default function KanbanLayout({
   header,
@@ -21,6 +22,7 @@ export default function KanbanLayout({
             <div className="flex items-center gap-2">
               <div className="gap-2 flex items-center">
                 <div className="gap-2 flex items-center">
+                  <CreateBoardPage />
                   <LanguangeToggle />
                   <DarkModeToggle />
                 </div>

@@ -1,7 +1,13 @@
-import { RouteIcon, Scissors, SquareKanban, Warehouse } from "lucide-react";
+import { LayoutDashboard, RouteIcon, Scissors, SquareKanban, Warehouse } from "lucide-react";
 
 export const data = {
     department: [
+      {
+        name: 'Dashboard',
+        logo: LayoutDashboard,
+        plan: 'Enterprise',
+        url: '/dashboard'
+      },
       {
         name: 'Cutting',
         logo: Scissors,
